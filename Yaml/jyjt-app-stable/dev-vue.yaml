@@ -12,6 +12,7 @@ data:
     server {
       listen  8083;
       server_name localhost;
+      client_max_body_size 100M;
       access_log /var/log/nginx/vue_access_log main;
     
       location / {
