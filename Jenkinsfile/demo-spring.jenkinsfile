@@ -5,6 +5,7 @@ pipeline {
     environment  {
         def warehouse = "${WORKSPACE}/warehouse"
         def tag = createVersion()
+        def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
     }
 
     //流水线的阶段
@@ -19,7 +20,7 @@ pipeline {
                                 name: 'branch'
                             ),
                             choice(
-                                choices: ['demo01', 'demo02'],
+                                choices: ['demo-spring-a', 'demo-spring-b'],
                                 name: 'app'
                             )
                         ])
@@ -35,11 +36,16 @@ pipeline {
             }
         }
 
-        stage('CheckOut') {
+        stage('git') {
             steps {
-                script {
-                    println('获取代码')
-                }
+                sh"""
+                    cd ${warehouse}
+                    git reset --hard HEAD
+                    git switch ${params.branch}
+                    git fetch --all
+                    git reset --hard origin/${params.branch}
+                    git pull origin ${params.branch}
+                """
             }
         }
         stage('Build') {
