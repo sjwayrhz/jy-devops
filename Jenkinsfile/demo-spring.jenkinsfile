@@ -18,6 +18,10 @@ pipeline {
                                 choices: ['ONE', 'TWO'],
                                 name: 'PARAMETER_01'
                             ),
+                            choice(
+                                choices: ['ONE', 'TWO'],
+                                name: 'PARAMETER_02'
+                            ),
                             booleanParam(
                                 defaultValue: true,
                                 description: '',
