@@ -2,8 +2,13 @@ pipeline{
     //指定运行此流水线的节点
     agent any
     
+    def createVersion() {    
+        return new Date().format('yyyyMMddHHmm')
+    }   
+
     environment  {
         def warehouse = "${WORKSPACE}/warehouse"
+        def tag = createVersion()
     }
 
     //流水线的阶段
