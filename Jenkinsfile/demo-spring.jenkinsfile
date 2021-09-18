@@ -8,7 +8,10 @@ pipeline{
 
         stage("Enviroments"){
             steps{
+                echo "修改之前"
                 echo "${WORKSPACE}"
+                WORKSPACE = "${WORKSPACE}/warehouse"
+                echo "修改之后"
             }
         }
 
