@@ -17,12 +17,10 @@ pipeline {
                             choice(
                                 choices: ['develop', 'master'],
                                 name: 'branch'
-                                description: "BRANCH_NAME"
                             ),
                             choice(
                                 choices: ['demo01', 'demo02'],
                                 name: 'app'
-                                description: "APPLICATION_NAME"
                             )
                         ])
                     ])
