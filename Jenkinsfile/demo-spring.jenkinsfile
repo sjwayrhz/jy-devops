@@ -50,10 +50,10 @@ pipeline {
         }
         stage('Complie') {
             steps {
-               // script{
+                script{
                     mvnHome = tool "m2"
                     sh "${mvnHome}/bin/mvn --version"
-               // }                
+                }                
             }
         }
     }
