@@ -48,35 +48,37 @@ pipeline {
                 """
             }
         }
-        stage('Build') {
+        stage('Complie') {
             steps {
-                script {
-                    println('运行构建')
-                }
+                script{
+                    mvnHome = tool "m2"
+                    sh "${mvnHome}/bin/mvn --version"
+                }                
             }
         }
     }
     post {
         always {
-            script {
-                println('流水线结束后，经常做的事情')
+            script{
+                println("always")
             }
         }
 
         success {
-            script {
-                println('流水线成功后，要做的事情')
+            script{
+                currentBuild.description = "\n 构建成功!" 
             }
         }
+
         failure {
-            script {
-                println('流水线失败后，要做的事情')
+            script{
+                currentBuild.description = "\n 构建失败!" 
             }
         }
 
         aborted {
-            script {
-                println('流水线取消后，要做的事情')
+            script{
+                currentBuild.description = "\n 构建取消!" 
             }
         }
     }
