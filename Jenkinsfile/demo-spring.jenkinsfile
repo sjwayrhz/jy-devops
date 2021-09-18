@@ -2,7 +2,7 @@ pipeline{
     //指定运行此流水线的节点
     agent any
     
-    Enviroments {
+    environment  {
         def warehouse = "${WORKSPACE}/warehouse"
     }
 
@@ -11,7 +11,7 @@ pipeline{
 
         stage("Enviroments"){
             steps{
-                echo "${WORKSPACE}"
+                echo "${warehouse}"
             }
         }
 
