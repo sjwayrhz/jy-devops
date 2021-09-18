@@ -2,16 +2,16 @@ pipeline{
     //指定运行此流水线的节点
     agent any
     
+    Enviroments {
+        def warehouse = "${WORKSPACE}/warehouse"
+    }
 
     //流水线的阶段
     stages{
 
         stage("Enviroments"){
             steps{
-                echo "修改之前"
                 echo "${WORKSPACE}"
-                def warehouse = "${WORKSPACE}/warehouse"
-                echo "修改之后"
             }
         }
 
