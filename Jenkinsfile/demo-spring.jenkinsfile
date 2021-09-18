@@ -6,7 +6,12 @@ pipeline{
     //流水线的阶段
     stages{
 
-        //阶段1 获取代码
+        stage("Enviroments"){
+            steps{
+                echo "${WORKSPACE}"
+            }
+        }
+
         stage("CheckOut"){
             steps{
                 script{
