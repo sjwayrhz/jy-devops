@@ -10,7 +10,7 @@ pipeline{
             steps{
                 echo "修改之前"
                 echo "${WORKSPACE}"
-                WORKSPACE = "${WORKSPACE}/warehouse"
+                def WORKSPACE = "${WORKSPACE}/warehouse"
                 echo "修改之后"
             }
         }
