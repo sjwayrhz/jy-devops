@@ -55,8 +55,25 @@ pipeline {
                     sh """
                       cd ${warehouse}                      
                       ${mvnHome}/bin/mvn clean install
+                      cp -fr ${warehouse}/target/demo-0.0.1-SNAPSHOT.jar ${warehouse}/docker
                     """
                 }                
+            }
+        }
+        stage ('operation by docker') {
+            steps {
+                script{
+                    sh """
+                        docker build -t ${repositry}:${tag} .
+                        docker push ${repositry}:${tag}
+                        docker rmi -f ${repositry}:${tag}
+                    """
+                }
+            }
+        }
+        stage ('kubernetes update apps') {
+            steps {
+                echo "hello-world"
             }
         }
     }
