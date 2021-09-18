@@ -64,6 +64,7 @@ pipeline {
             steps {
                 script{
                     sh """
+                        cd ${warehouse} 
                         docker build -t ${repositry}:${tag} .
                         docker push ${repositry}:${tag}
                         docker rmi -f ${repositry}:${tag}
