@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     //指定运行此流水线的节点
     agent any
 
@@ -8,57 +8,87 @@ pipeline{
     }
 
     //流水线的阶段
-    stages{
-
-        stage("Enviroments"){
-            steps{
-                echo "${warehouse}"
-            }
-        }
-
-        stage("CheckOut"){
-            steps{
-                script{
-                    println("获取代码")
+    stages {
+        stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            choice(
+                                choices: ['ONE', 'TWO'],
+                                name: 'PARAMETER_01'
+                            ),
+                            booleanParam(
+                                defaultValue: true,
+                                description: '',
+                                name: 'BOOLEAN'
+                            ),
+                            text(
+                                defaultValue: '''
+                                this is a multi-line
+                                string parameter example
+                                ''',
+                                 name: 'MULTI-LINE-STRING'
+                            ),
+                            string(
+                                defaultValue: 'scriptcrunch',
+                                name: 'STRING-PARAMETER',
+                                trim: true
+                            )
+                        ])
+                    ])
                 }
             }
         }
-        stage("Build"){
-            steps{
-                script{
-                    println("运行构建")
+
+        stage('Enviroments') {
+            steps {
+                echo "${warehouse}"
+                echo "${tag}"
+            }
+        }
+
+        stage('CheckOut') {
+            steps {
+                script {
+                    println('获取代码')
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    println('运行构建')
                 }
             }
         }
     }
     post {
-        always{
-            script{
-                println("流水线结束后，经常做的事情")
+        always {
+            script {
+                println('流水线结束后，经常做的事情')
             }
         }
-        
-        success{
-            script{
-                println("流水线成功后，要做的事情")
-            }
-        
-        }
-        failure{
-            script{
-                println("流水线失败后，要做的事情")
+
+        success {
+            script {
+                println('流水线成功后，要做的事情')
             }
         }
-        
-        aborted{
-            script{
-                println("流水线取消后，要做的事情")
+        failure {
+            script {
+                println('流水线失败后，要做的事情')
             }
-        
+        }
+
+        aborted {
+            script {
+                println('流水线取消后，要做的事情')
+            }
         }
     }
 }
 
-def createVersion() {    
-        return new Date().format('yyyyMMddHHmm')
-}   
+def createVersion() {
+    return new Date().format('yyyyMMddHHmm')
+}
