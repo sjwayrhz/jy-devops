@@ -51,9 +51,9 @@ pipeline {
         stage('Complie') {
             steps {
                 script{
+                    mvnHome = tool "m2"
                     sh """
-                      cd ${warehouse}
-                      mvnHome = tool "m2"
+                      cd ${warehouse}                      
                       ${mvnHome}/bin/mvn clean install
                     """
                 }                
