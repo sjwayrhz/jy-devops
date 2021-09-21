@@ -54,7 +54,7 @@ global:
     allowClusterRoles: true
   ## https://docs.gitlab.com/charts/charts/globals#configure-host-settings
   hosts:
-    domain: example.com
+    domain: gitlab.sjhz.tk
     hostSuffix:
     https: true
     externalIP:
@@ -175,9 +175,10 @@ global:
 
   ## https://docs.gitlab.com/charts/charts/globals#configure-minio-settings
   minio:
-    enabled: true
+    enabled: ture
     credentials: {}
       # secret:
+   
 
   ## https://docs.gitlab.com/charts/charts/globals#configure-grafana-integration
   grafana:
@@ -696,10 +697,10 @@ upgradeCheck:
       cpu: 50m
 
 ## Settings to for the Let's Encrypt ACME Issuer
-# certmanager-issuer:
+certmanager-issuer:
 #   # The email address to register certificates requested from Let's Encrypt.
 #   # Required if using Let's Encrypt.
-#   email: email@example.com
+  email: i@sjhz.cf
 
 ## Installation & configuration of jetstack/cert-manager
 ## See requirements.yaml for current version
