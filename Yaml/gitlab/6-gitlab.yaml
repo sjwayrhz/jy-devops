@@ -34,7 +34,6 @@ spec:
             secretKeyRef:
               name: git-user-pass
               key: password
-          # value: admin321
         - name: GITLAB_ROOT_EMAIL
           value: 1369472116@qq.com
         - name: GITLAB_HOST
