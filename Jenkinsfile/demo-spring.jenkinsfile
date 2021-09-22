@@ -53,7 +53,8 @@ pipeline {
                 script{
                     mvnHome = tool "m2"
                     sh """
-                      cd ${warehouse}                      
+                      cd ${warehouse}     
+                      ${mvnHome}/bin/mvn --version                 
                     //  ${mvnHome}/bin/mvn clean install
                     //  cp -fr ${warehouse}/target/demo-0.0.1-SNAPSHOT.jar ${warehouse}/docker
                     """
