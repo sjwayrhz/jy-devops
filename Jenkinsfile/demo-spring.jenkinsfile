@@ -54,7 +54,7 @@ pipeline {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")     
 
-                    def m = deplayApp.call(map.params.app)   
+                    def m = deployApp.call(map.params.app)   
                 }
 
                 
