@@ -52,11 +52,11 @@ pipeline {
                 
                 script {
                     sayHi.call("sharedlibarayScript") 
-                    sayHi.callBye("sharedlibarayScript")    
-
-                    println deplayApp.call(map[params.app])      
+                    sayHi.callBye("sharedlibarayScript")        
                 }
-                
+
+                def container = deplayApp "map.${params.app}"
+
                 // println deplayApp.map.params.app
                 // println sayHi.callDeploy(params.app)
             }
