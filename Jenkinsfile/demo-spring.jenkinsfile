@@ -54,7 +54,8 @@ pipeline {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")    
                     
-                    println globalVars.map."${params.app}"             
+                   // println globalVars.map."${params.app}" 
+                    println globalVars.foo            
                 }
 
             }
