@@ -51,6 +51,7 @@ pipeline {
                 sayHi 'sharedlibaray'
                 println globalVars.foo
                 println params.app
+                println sayHi.callDeploy(params.app)
             }
         }
 
