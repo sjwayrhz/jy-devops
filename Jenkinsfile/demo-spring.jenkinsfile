@@ -51,11 +51,12 @@ pipeline {
                 sayHi 'sharedlibaraySteps'
                 
                 script {
-                    sayHi.call("sharedlibarayScript")
-                    println deplayApp.map.params.app
+                    sayHi.call("sharedlibarayScript") 
+                    sayHi.callBye("sharedlibarayScript")                    
                 }
                 
-                //println sayHi.callDeploy(params.app)
+                // println deplayApp.map.params.app
+                // println sayHi.callDeploy(params.app)
             }
         }
 
