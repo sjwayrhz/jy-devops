@@ -48,8 +48,8 @@ pipeline {
         stage('sharedlibaray') {
             steps{
                 echo 'Hello world'
-                sayHi 'sharedlibaray'
-                println deplayApp.map.params.app
+                sayHi.call(sharedlibaray)
+                // println deplayApp.map.params.app
                 //println sayHi.callDeploy(params.app)
             }
         }
