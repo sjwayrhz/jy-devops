@@ -50,11 +50,13 @@ pipeline {
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
                 
+                def m = deployApp.call("map[${params.app}]")  
+                
                 script {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")     
 
-                    def m = deployApp.call("map[${params.app}]")   
+                     
                 }
 
             }
