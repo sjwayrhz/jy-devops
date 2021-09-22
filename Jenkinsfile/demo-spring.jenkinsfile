@@ -1,5 +1,5 @@
 #!groovy
-@Library('jenkinslib') _     
+@Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
 
 pipeline {
