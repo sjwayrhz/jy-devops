@@ -46,9 +46,11 @@ pipeline {
         }
 
         stage('Demo') {
-            echo 'Hello world'
-            sayHi 'demoworld'
-            println globalVars.foo
+            steps{
+                echo 'Hello world'
+                sayHi 'demoworld'
+                println globalVars.foo
+            }
         }
 
         stage('git') {
