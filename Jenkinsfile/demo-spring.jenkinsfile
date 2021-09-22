@@ -52,9 +52,9 @@ pipeline {
                 
                 script {
                     sayHi.call("sharedlibarayScript")
+                    println deplayApp.map.params.app
                 }
                 
-                // println deplayApp.map.params.app
                 //println sayHi.callDeploy(params.app)
             }
         }
