@@ -54,10 +54,7 @@ pipeline {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")    
 
-                    def map = [
-                        "demo-spring-a":"hwy-1",          
-                        "demo-spring-b":"hwy-2" 
-                    ]
+                    
                     println map."${params.app}"             
                 }
 
