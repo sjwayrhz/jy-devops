@@ -57,10 +57,6 @@ pipeline {
                     def m = deployApp.call(map.params.app)   
                 }
 
-                
-
-                // println deplayApp.map.params.app
-                // println sayHi.callDeploy(params.app)
             }
         }
 
