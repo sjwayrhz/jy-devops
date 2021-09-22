@@ -45,8 +45,6 @@ pipeline {
             }
         }
 
-        def container = deplayApp "map.${params.app}"
-
         stage('sharedlibaray') {
             steps{
                 echo 'Hello world'
@@ -57,7 +55,7 @@ pipeline {
                     sayHi.callBye("sharedlibarayScript")        
                 }
 
-                
+                println (deplayApp "map.${params.app}")
 
                 // println deplayApp.map.params.app
                 // println sayHi.callDeploy(params.app)
