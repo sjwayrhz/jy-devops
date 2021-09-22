@@ -68,7 +68,9 @@ pipeline {
                     //  cp -fr ${warehouse}/target/demo-0.0.1-SNAPSHOT.jar ${warehouse}/docker
                 }*/
                 sh 'mvn --version'  
-                mytools.PrintMes("编译阶段",'green')              
+                script {
+                    mytools.PrintMes("编译阶段",'green')  
+                }            
             }
         }
         stage ('operation by docker') {
