@@ -33,7 +33,7 @@ spec:
       imagePullSecrets:
         - name: registry-pull-secret
       containers:
-      - name: demo
+      - name: hwy
         image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-demo-spring-a:202109221122
         imagePullPolicy: IfNotPresent
         args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]

@@ -76,7 +76,7 @@ pipeline {
         stage ('kubernetes update apps') {
             steps {
                 script {
-                    sh "ssh 10.230.7.20 'kubectl set image deployment/hwy-1 demo=${repositry}:${tag} -n default'"
+                    sh "ssh 10.230.7.20 'kubectl set image deployment/hwy-1 hwy=${repositry}:${tag} -n default'"
                 }
             }
         }
