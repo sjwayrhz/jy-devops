@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hwy-configmap-1
+data:
+  DEPLOYMENT_ENV: test
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry-pull-secret
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJyZWdpc3RyeS5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20iOiB7CgkJCSJhdXRoIjogImRHRnZhWE4wYlc5dWEwQXhOak11WTI5dE9sWjNkalUyZEhrMyIKCQl9Cgl9Cn0=
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hwy-1
+  labels:
+    app: hwy-1
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: hwy-1
+  template:
+    metadata:
+      labels:
+        app: hwy-1
+    spec:
+      imagePullSecrets:
+        - name: registry-pull-secret
+      containers:
+      - name: demo
+        image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-demo-spring-a:202109221122
+        imagePullPolicy: IfNotPresent
+        args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DEPLOYMENT_ENV_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: hwy-configmap-1
+              key: DEPLOYMENT_ENV
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hwy-1
+  labels:
+    app: hwy-1
+spec:
+  type: NodePort 
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: hwy-1     
