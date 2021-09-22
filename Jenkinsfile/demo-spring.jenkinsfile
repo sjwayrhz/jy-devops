@@ -56,8 +56,8 @@ pipeline {
                     def map = [
                         "demo-spring-a":"hwy-1",          
                         "demo-spring-b":"hwy-2" 
-                        ]
-                    println map.${params.app}                    
+                    ]
+                    println map."${params.app}"                    
                     println globalVars.foo           
                 }
             }
