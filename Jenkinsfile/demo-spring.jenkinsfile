@@ -54,6 +54,9 @@ pipeline {
                     git reset --hard origin/${params.branch}
                     git pull origin ${params.branch}
                 """
+                script {
+                    mytools.PrintMes("拉取代码",'green')  
+                }  
             }
         }
         stage('Complie') {
