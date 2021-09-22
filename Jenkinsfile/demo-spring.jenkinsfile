@@ -85,7 +85,7 @@ pipeline {
                         docker push ${repositry}:${tag}
                         docker rmi -f ${repositry}:${tag}
                     """
-                    mytools.PrintMes("docker镜像制作",'blue') 
+                    mytools.PrintMes("docker镜像制作",'yellow') 
                 }
             }
         }
