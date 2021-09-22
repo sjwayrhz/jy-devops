@@ -1,6 +1,7 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
+import org.devops.globalVars
 
 pipeline {
     //指定运行此流水线的节点
@@ -42,6 +43,12 @@ pipeline {
                 echo "${warehouse}"
                 echo "${tag}"
             }
+        }
+
+        stage('Demo') {
+            echo 'Hello world'
+            sayHi 'demoworld'
+            println globalVars.foo
         }
 
         stage('git') {
