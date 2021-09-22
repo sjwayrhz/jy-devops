@@ -108,7 +108,7 @@ pipeline {
         success {
             script{
                 currentBuild.description = "构建成功!" 
-                mytools.PrintMes("构建成功",'green') 
+                mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'green') 
             }
         }
 
