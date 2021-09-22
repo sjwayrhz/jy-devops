@@ -51,7 +51,7 @@ pipeline {
                 sayHi 'sharedlibaraySteps'
                 
                 script {
-                    sayHi.call(sharedlibarayScript)
+                    sayHi.call("sharedlibarayScript")
                 }
                 
                 // println deplayApp.map.params.app
