@@ -49,11 +49,16 @@ pipeline {
             steps{
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
+
+                def map = [
+                        "demo-spring-a":"hwy-1",          
+                        "demo-spring-b":"hwy-2" 
+                    ]
                 
                 script {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")     
-                    println deployApp.call("map.demo-spring-a")                     
+                    println map.demo-spring-a             
                 }
 
             }
