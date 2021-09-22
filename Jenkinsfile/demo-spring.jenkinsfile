@@ -49,7 +49,7 @@ pipeline {
             steps{
                 echo 'Hello world'
                 sayHi 'sharedlibaray'
-                println deployApp.map.params.app
+                println deployApp.params.app
                 //println sayHi.callDeploy(params.app)
             }
         }
