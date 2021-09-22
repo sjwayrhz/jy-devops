@@ -94,6 +94,7 @@ pipeline {
                 script {
                     sh "ssh 10.230.7.20 'kubectl set image deployment/hwy-1 hwy=${repositry}:${tag} -n default'"
                     mytools.PrintMes("更新k8s镜像",'green') 
+                    call()
                 }
             }
         }
