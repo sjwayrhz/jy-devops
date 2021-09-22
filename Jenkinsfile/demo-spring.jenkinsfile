@@ -48,9 +48,8 @@ pipeline {
         stage('sharedlibaray') {
             steps{
                 echo 'Hello world'
-                sayHi.call(sharedlibaray)
-                println globalVars.foo
-                println params.app
+                sayHi 'sharedlibaray'
+                deployApp params.app
                 //println sayHi.callDeploy(params.app)
             }
         }
