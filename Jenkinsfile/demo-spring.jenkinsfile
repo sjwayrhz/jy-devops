@@ -50,8 +50,7 @@ pipeline {
                 echo 'Hello world'
                 sayHi 'sharedlibaray'
                 println globalVars.foo
-                def deploy = callDeploy.(params.app)
-                println deploy
+                println params.app
             }
         }
 
