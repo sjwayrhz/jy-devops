@@ -8,6 +8,10 @@ pipeline {
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
     }
 
+    tools {
+        maven 'm2' 
+    }
+
     //流水线的阶段
     stages {
         stage('Setup parameters') {
@@ -50,7 +54,7 @@ pipeline {
         }
         stage('Complie') {
             steps {
-                script{
+                /*script{
                     mvnHome = tool "m2"
                     sh """
                       cd ${warehouse}     
@@ -58,7 +62,8 @@ pipeline {
                     """
                     //  ${mvnHome}/bin/mvn clean install
                     //  cp -fr ${warehouse}/target/demo-0.0.1-SNAPSHOT.jar ${warehouse}/docker
-                }                
+                }*/
+                sh 'mvn --version'                
             }
         }
         stage ('operation by docker') {
