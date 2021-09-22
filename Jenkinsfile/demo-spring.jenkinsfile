@@ -53,7 +53,7 @@ pipeline {
                 script {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")     
-                    println deployApp.call("map.get(${params.app})")                     
+                    println deployApp.call(map.get(${params.app}))                     
                 }
 
             }
