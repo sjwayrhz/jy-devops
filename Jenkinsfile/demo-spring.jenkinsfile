@@ -45,10 +45,10 @@ pipeline {
             }
         }
 
-        stage('Demo') {
+        stage('sharedlibaray') {
             steps{
                 echo 'Hello world'
-                sayHi 'demoworld'
+                sayHi 'sharedlibaray'
                 println globalVars.foo
             }
         }
