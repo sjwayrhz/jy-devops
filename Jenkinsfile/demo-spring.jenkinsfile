@@ -53,8 +53,8 @@ pipeline {
                 sayHi "sharedlibaraySteps"
 
                 println globalVars.foo
-                
-                println demoMap.map
+                def map = demoMap.map
+                println map.get('demo-spring-a')
             }
         }
 
