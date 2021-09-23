@@ -7,11 +7,6 @@ pipeline {
     //指定运行此流水线的节点
     agent any
 
-    def map = [
-            "demo-spring-a":"hwy-1",          
-            "demo-spring-b":"hwy-2" 
-            ]
-
     environment  {
         def warehouse = "${WORKSPACE}/warehouse"
         def tag = createVersion()
@@ -24,6 +19,11 @@ pipeline {
 
     //流水线的阶段
     stages {
+        def map = [
+            "demo-spring-a":"hwy-1",          
+            "demo-spring-b":"hwy-2" 
+            ]
+
         stage('Setup parameters') {
             steps {
                 script {
