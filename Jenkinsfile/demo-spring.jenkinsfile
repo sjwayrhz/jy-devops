@@ -51,11 +51,7 @@ pipeline {
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
                 
-                script {
-                                           
-                    println SampleMap.map."${params.app}"
-
-                }
+                println SampleMap.map."${params.app}"
             }
         }
 
