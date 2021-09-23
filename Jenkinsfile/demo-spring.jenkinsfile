@@ -52,9 +52,8 @@ pipeline {
                 sayHi "sharedlibaraySteps"
                 
                 script {
-                                       
-                    println map."${params.app}"                    
-                    println SampleMap.map.${params.app}
+                                           
+                    println SampleMap.map."${params.app}"
 
                 }
             }
