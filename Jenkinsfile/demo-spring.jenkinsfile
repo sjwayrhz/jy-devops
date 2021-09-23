@@ -52,7 +52,9 @@ pipeline {
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
                 
-                println GlobalVars.foo
+                script{
+                    println GlobalVars.foo
+                }
             }
         }
 
