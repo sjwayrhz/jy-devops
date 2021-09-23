@@ -2,7 +2,7 @@
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
 import org.devops.SampleMap
-import org.devops.GlobalVars
+import org.devops.globalVars
 
 pipeline {
     //指定运行此流水线的节点
@@ -53,7 +53,7 @@ pipeline {
                 sayHi "sharedlibaraySteps"
                 
                 script{
-                    println GlobalVars.foo
+                    println globalVars.foo
                 }
             }
         }
