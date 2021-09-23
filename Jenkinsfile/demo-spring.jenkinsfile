@@ -129,8 +129,3 @@ pipeline {
         }
     }
 }
-
-def createVersion() {
-    return new Date().format('yyyyMMddHHmm')
-}
-
