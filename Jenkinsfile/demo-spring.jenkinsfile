@@ -53,10 +53,7 @@ pipeline {
                 script {
                     sayHi.call("sharedlibarayScript") 
                     sayHi.callBye("sharedlibarayScript")    
-                    def map = [
-                        "demo-spring-a":"hwy-1",          
-                        "demo-spring-b":"hwy-2" 
-                    ]
+                    
                     println map."${params.app}"                    
                     println globalVars.foo           
                 }
@@ -148,3 +145,8 @@ pipeline {
 def createVersion() {
     return new Date().format('yyyyMMddHHmm')
 }
+
+def map = [
+    "demo-spring-a":"hwy-1",          
+    "demo-spring-b":"hwy-2" 
+    ]
