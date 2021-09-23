@@ -14,7 +14,7 @@ pipeline {
     }
 
     tools {
-        maven 'm2' 
+        maven 'maven' 
     }
 
     //流水线的阶段
@@ -123,20 +123,13 @@ pipeline {
     post {
         always {
             script{
-                println("always")
+                println("always find post messages")
             }
         }
 
         success {
             script{
-                currentBuild.description = "构建成功!" 
                 mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'purple') 
-            }
-        }
-
-        failure {
-            script{
-                currentBuild.description = "\n 构建失败!" 
             }
         }
 
