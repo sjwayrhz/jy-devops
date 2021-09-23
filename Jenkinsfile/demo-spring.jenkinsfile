@@ -130,10 +130,6 @@ pipeline {
         success {
             script{
                 mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'purple') 
-                wrap([$class: 'BuildUser']) {
-                mail to: "${BUILD_USER_EMAIL }",
-                subject: "PineLine '${JOB_NAME}' (${BUILD_NUMBER}) result",
-                body: "${BUILD_USER}'s pineline '${JOB_NAME}' (${BUILD_NUMBER}) run success\n请及时前往${env.BUILD_URL}进行查看"
             }
         }
 
