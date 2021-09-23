@@ -1,7 +1,7 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-//import org.devops.sampleMap
+import org.devops.demoMap
 import org.devops.globalVars
 
 pipeline {
@@ -54,10 +54,7 @@ pipeline {
 
                 println globalVars.foo
                 
-                script{
-                    println globalVars.foo
-                   // println sampleMap.map."${params.app}"
-                }
+                println demoMap.'demo-spring-a'
             }
         }
 
