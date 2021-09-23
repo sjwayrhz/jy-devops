@@ -1,7 +1,8 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-import org.devops.globalVars
+import org.devops.GlobalVars
+import org.devops.SampleMap
 
 pipeline {
     //指定运行此流水线的节点
@@ -52,16 +53,11 @@ pipeline {
                 sayHi "sharedlibaraySteps"
                 
                 script {
-                    sayHi.call("sharedlibarayScript") 
-                    sayHi.callBye("sharedlibarayScript")   
-
-                    def map = [
-                        "demo-spring-a":"hwy-1",          
-                        "demo-spring-b":"hwy-2" 
-                    ] 
-                    
+                                       
                     println map."${params.app}"                    
-                    println globalVars.foo           
+                    println GlobalVars.foo           
+                    println SampleMap.map.${params.app}
+
                 }
             }
         }
