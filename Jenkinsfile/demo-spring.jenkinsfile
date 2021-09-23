@@ -19,10 +19,6 @@ pipeline {
 
     //流水线的阶段
     stages {
-        def map = [
-            "demo-spring-a":"hwy-1",          
-            "demo-spring-b":"hwy-2" 
-            ]
 
         stage('Setup parameters') {
             steps {
@@ -52,6 +48,11 @@ pipeline {
 
         stage('sharedlibaray') {
             steps{
+                def map = [
+                  "demo-spring-a":"hwy-1",          
+                  "demo-spring-b":"hwy-2" 
+               ]
+
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
                 
