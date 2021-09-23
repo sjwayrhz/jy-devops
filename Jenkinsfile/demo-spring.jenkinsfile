@@ -1,7 +1,6 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-import org.devops.GlobalVars
 import org.devops.SampleMap
 
 pipeline {
@@ -55,7 +54,6 @@ pipeline {
                 script {
                                        
                     println map."${params.app}"                    
-                    println GlobalVars.foo           
                     println SampleMap.map.${params.app}
 
                 }
