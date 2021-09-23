@@ -1,7 +1,7 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-import org.devops.sampleMap
+//import org.devops.sampleMap
 import org.devops.globalVars
 
 pipeline {
