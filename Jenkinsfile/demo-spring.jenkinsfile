@@ -77,7 +77,8 @@ pipeline {
                     git pull origin ${params.branch}
                 """
                 script {
-                    mytools.PrintMes("拉取代码",'blue')  
+                    commitId = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    mytools.PrintMes("项目的commitId=${commitId}",'blue')  
                 }  
             }
         }
