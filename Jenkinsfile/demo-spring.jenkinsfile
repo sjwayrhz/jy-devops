@@ -54,7 +54,7 @@ pipeline {
 
                 println globalVars.foo
                 
-                println demoMap.'demo-spring-a'
+                println demoMap.demoMap.'demo-spring-a'
             }
         }
 
