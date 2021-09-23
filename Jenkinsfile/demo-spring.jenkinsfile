@@ -54,6 +54,7 @@ pipeline {
                 
                 script{
                     println globalVars.foo
+                    println sampleMap.map."${params.app}"
                 }
             }
         }
