@@ -129,9 +129,9 @@ pipeline {
 
         success {
             script{
-                build_tag = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'purple') 
-                echo "${build_tag}"
+                commitId = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                mytools.PrintMes("本次的commitId -> ${commitId}",'purple') 
+                mytools.PrintMes("构建的镜像 -> ${repositry}:${tag}",'purple')                 
             }
         }
 
