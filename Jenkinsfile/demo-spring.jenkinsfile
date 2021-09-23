@@ -131,7 +131,7 @@ pipeline {
             script{
                 build_tag = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                 mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'purple') 
-                mytools.PrintMes("本次jenkins的commitid=${build_tag}")
+                echo "${build_tag}"
             }
         }
 
