@@ -129,9 +129,9 @@ pipeline {
 
         success {
             script{
-                env.imageTag = sh (script: 'git rev-parse --short HEAD ${GIT_COMMIT}', returnStdout: true).trim()
+                def commitid = sh (script: 'git rev-parse --short HEAD ${GIT_COMMIT}', returnStdout: true).trim()
                 mytools.PrintMes("构建的镜像为 -> ${repositry}:${tag}",'purple') 
-                mytools.PrintMes("本次jenkins的commitid=${imageTag}")
+                mytools.PrintMes("本次jenkins的commitid=${commitid}")
             }
         }
 
