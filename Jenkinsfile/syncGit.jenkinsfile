@@ -1,12 +1,11 @@
 pipeline {
     agent any    
-    
-    stages {
-        
-        triggers {
-            cron('H/5 * * * *')
-        }
 
+    triggers {
+        cron('H/5 * * * *')
+    }
+    
+    stages {    
         stage('Setup parameters') {
             steps {
                 script {
