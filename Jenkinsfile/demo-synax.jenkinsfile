@@ -1,3 +1,5 @@
+@Library('Jenkinslib') _
+
 def country_capital = [
     Australia: [
         best: 'xx1',
@@ -18,6 +20,15 @@ pipeline {
             steps {
                 script {
                     echo country_capital.Australia.best
+                }
+            }
+        }
+
+        stage('log') {
+            steps {
+                script {
+                    multiMethod.foo()
+                    multiMethod.foo()
                 }
             }
         }
