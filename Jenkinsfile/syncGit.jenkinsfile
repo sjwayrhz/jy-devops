@@ -2,7 +2,7 @@ pipeline {
     agent any    
 
     triggers {
-        cron('H/5 * * * *')
+        cron('0 4 * * *')
     }
 
     options {
@@ -34,20 +34,6 @@ pipeline {
                     git fetch --all
                     git reset --hard origin/master
                     git pull origin master
-                    git push
-                """
-            }            
-        }
-
-        stage('develop-markdown') {
-            steps {
-                sh"""
-                    cd ${WORKSPACE}/markdown
-                    git reset --hard HEAD
-                    git switch develop
-                    git fetch --all
-                    git reset --hard origin/develop
-                    git pull origin develop
                     git push
                 """
             }            
