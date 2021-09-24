@@ -1,32 +1,56 @@
-@Library('Jenkinslib') _
-
-def country_capital = [
-    Australia: [
-        best: 'xx1',
-        good: 'xx2',
-        bad: 'xx3'
-    ],
-    America: [
-        best: 'yy1',
-        good: 'yy2',
-        bad: 'yy3'
-    ]
-]
-
-def map = [
-  "demo-spring-a": "hwy-1",
-  "demo-spring-b": "hwy-2"
-]
-
 pipeline {
     agent any    
+
+    environment  {
+        def warehouse = "${WORKSPACE}/${params.repo}"
+    }
+
     stages {
-        stage('Test Map') {
+
+        stage('Setup parameters') {
             steps {
                 script {
-                    echo country_capital.Australia.best
-                    echo map."demo-spring-a"
+                    properties([
+                        parameters([
+                            choice(
+                                choices: ['develop', 'master'],
+                                name: 'branch'
+                            ),
+                            choice(
+                                choices: ['devops', 'markdown'],
+                                name: 'repo'
+                            )
+                        ])
+                    ])
                 }
+            }
+        }
+
+
+        stage('git') {
+            steps {
+                sh"""
+                    cd ${warehouse}
+                    git reset --hard HEAD
+                    git switch ${params.branch}
+                    git fetch --all
+                    git reset --hard origin/${params.branch}
+                    git pull origin ${params.branch}
+                    git push
+                """
+            }            
+        }
+    }
+    post {
+        success {
+            script{
+                currentBuild.description = "更新成功!"              
+            }
+        }
+
+        failed {
+            script{
+                currentBuild.description = "更新失败!" 
             }
         }
     }
