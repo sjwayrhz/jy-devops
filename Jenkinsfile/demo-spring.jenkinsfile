@@ -52,7 +52,7 @@ pipeline {
                 sayHi "sharedlibaraySteps"
 
                 println globalVars.foo
-                println deployApp.demo-spring-a
+                println deployApp.'demo-spring-a'
                 
             }
         }
