@@ -3,6 +3,11 @@
 def mytools = new org.devops.tools()
 import org.devops.globalVars
 
+def map = [
+  "demo-spring-a": "hwy-1",
+  "demo-spring-b": "hwy-2"
+]
+
 pipeline {
     //指定运行此流水线的节点
     agent any
@@ -53,10 +58,7 @@ pipeline {
 
                 println globalVars.foo
 
-                script{
-                    deployApp.callMap()
-                    println map."${params.app}"
-                }
+                println map."${params.app}"
                     
             }
         }
