@@ -1,3 +1,4 @@
-def call(String name) {
-  echo "Hello, ${name}."
-}
+def deployApp = [
+  "demo-spring-a": "hwy-1",
+  "demo-spring-b": "hwy-2"
+]

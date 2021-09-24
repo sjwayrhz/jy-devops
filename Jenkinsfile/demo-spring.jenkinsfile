@@ -1,7 +1,6 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-import org.devops.demoMap
 import org.devops.globalVars
 
 pipeline {
@@ -53,6 +52,7 @@ pipeline {
                 sayHi "sharedlibaraySteps"
 
                 println globalVars.foo
+                println deployApp.demo-spring-a
                 
             }
         }
