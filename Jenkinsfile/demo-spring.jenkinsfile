@@ -50,9 +50,10 @@ pipeline {
             steps{                
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
+                deployApp
 
                 println globalVars.foo
-                println deployApp."${params.app}"
+                println map."${params.app}"
                 
             }
         }
