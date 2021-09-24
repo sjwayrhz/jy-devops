@@ -1,7 +1,7 @@
 #!groovy
 @Library('Jenkinslib') _     
 def mytools = new org.devops.tools()
-import org.devops.globalVars
+import org.devops.GlobalVars
 
 pipeline {
     //指定运行此流水线的节点
@@ -51,7 +51,7 @@ pipeline {
                 echo 'Hello world'
                 sayHi "sharedlibaraySteps"
 
-                println globalVars.foo
+                println GlobalVars.foo
                 println map."${params.app}"
                 
             }
