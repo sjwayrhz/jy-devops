@@ -53,8 +53,10 @@ pipeline {
 
                 println globalVars.foo
 
-                deployApp.callMap()
-                println map."${params.app}"
+                script{
+                    deployApp.callMap()
+                    println map."${params.app}"
+                }
                     
             }
         }
