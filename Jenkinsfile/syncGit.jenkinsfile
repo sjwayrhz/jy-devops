@@ -1,10 +1,6 @@
 pipeline {
     agent any    
-
-    environment  {
-        def warehouse = "${WORKSPACE}/${params.repo}"
-    }
-
+    
     stages {
 
         stage('Setup parameters') {
@@ -24,6 +20,10 @@ pipeline {
                     ])
                 }
             }
+        }
+
+        environment  {
+            def warehouse = "${WORKSPACE}/${params.repo}"
         }
 
 
