@@ -2,11 +2,11 @@ pipeline {
     agent any    
 
     triggers {
-        cron('0 4 * * *')
+        cron('H */6 * * *')
     }
 
     options {
-        timeout(time: 10, unit: 'SECONDS') 
+        timeout(time: 20, unit: 'SECONDS') 
     }
     
     stages {    
