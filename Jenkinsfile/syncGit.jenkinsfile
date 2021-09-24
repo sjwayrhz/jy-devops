@@ -48,7 +48,7 @@ pipeline {
             }
         }
 
-        failed {
+        failure {
             script{
                 currentBuild.description = "更新失败!" 
             }
