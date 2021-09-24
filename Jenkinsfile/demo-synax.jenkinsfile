@@ -1,4 +1,5 @@
 @Library('Jenkinslib') _
+import org.devops.MultiMethod
 
 def country_capital = [
     Australia: [
@@ -28,7 +29,11 @@ pipeline {
             steps {
                 script {
                     multiMethod.foo()
-                    multiMethod.foo()
+                    multiMethod.bar()
+
+                    def x= new MultiMethod(this)
+                    x.foo()
+                    x.bar()
                 }
             }
         }
