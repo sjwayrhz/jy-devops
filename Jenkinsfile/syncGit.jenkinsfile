@@ -4,6 +4,10 @@ pipeline {
     triggers {
         cron('H/5 * * * *')
     }
+
+    options {
+        timeout(time: 5, unit: 'SECONDS') 
+    }
     
     stages {    
 
