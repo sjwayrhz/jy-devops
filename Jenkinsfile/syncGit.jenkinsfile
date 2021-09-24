@@ -2,6 +2,10 @@ pipeline {
     agent any    
     
     stages {
+        
+        triggers {
+            cron('H/5 * * * *')
+        }
 
         stage('Setup parameters') {
             steps {
