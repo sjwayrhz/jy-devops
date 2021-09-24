@@ -1,5 +1,5 @@
 @Library('Jenkinslib') _
-import org.devops.MultiMethod
+import com.method.MultiMethod
 
 def country_capital = [
     Australia: [
