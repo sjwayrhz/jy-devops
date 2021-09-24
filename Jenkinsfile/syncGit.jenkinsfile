@@ -6,38 +6,63 @@ pipeline {
     }
     
     stages {    
-        stage('Setup parameters') {
-            steps {
-                script {
-                    properties([
-                        parameters([
-                            choice(
-                                choices: ['develop', 'master'],
-                                name: 'branch'
-                            ),
-                            choice(
-                                choices: ['devops', 'markdown'],
-                                name: 'repo'
-                            )
-                        ])
-                    ])
-                }
-            }
-        }
 
-        stage('git') {
+        stage('develop-devops') {
             steps {
                 sh"""
-                    cd ${WORKSPACE}/${params.repo}
+                    cd ${WORKSPACE}/devops
                     git reset --hard HEAD
-                    git switch ${params.branch}
+                    git switch develop
                     git fetch --all
-                    git reset --hard origin/${params.branch}
-                    git pull origin ${params.branch}
+                    git reset --hard origin/develop
+                    git pull origin develop
                     git push
                 """
             }            
         }
+
+        stage('master-devops') {
+            steps {
+                sh"""
+                    cd ${WORKSPACE}/devops
+                    git reset --hard HEAD
+                    git switch master
+                    git fetch --all
+                    git reset --hard origin/master
+                    git pull origin master
+                    git push
+                """
+            }            
+        }
+
+        stage('develop-markdown') {
+            steps {
+                sh"""
+                    cd ${WORKSPACE}/markdown
+                    git reset --hard HEAD
+                    git switch develop
+                    git fetch --all
+                    git reset --hard origin/develop
+                    git pull origin develop
+                    git push
+                """
+            }            
+        }
+
+        stage('master-markdown') {
+            steps {
+                sh"""
+                    cd ${WORKSPACE}/markdown
+                    git reset --hard HEAD
+                    git switch master
+                    git fetch --all
+                    git reset --hard origin/master
+                    git pull origin master
+                    git push
+                """
+            }            
+        }
+
     }
     post {
         success {
