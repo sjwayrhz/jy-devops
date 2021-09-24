@@ -52,6 +52,9 @@ pipeline {
                 sayHi "sharedlibaraySteps"
 
                 println globalVars.foo
+
+                deployApp.callMap()
+                println map."${params.app}"
                     
             }
         }
