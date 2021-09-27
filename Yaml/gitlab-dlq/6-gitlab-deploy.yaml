@@ -61,11 +61,11 @@ spec:
         - name: GITLAB_SECRETS_OTP_KEY_BASE
           value: long-and-random-alpha-numeric-string
         - name: GITLAB_ROOT_PASSWORD
-          value: admin@mydlq
+          value: 2wsx#EDC
         - name: GITLAB_ROOT_EMAIL 
-          value: mynamedlq@163.com     
+          value: i@sjhz.cf    
         - name: GITLAB_HOST           
-          value: '192.168.2.11'
+          value: '10.230.7.20'
         - name: GITLAB_PORT        
           value: '31001' 
         - name: GITLAB_PORT        
@@ -85,7 +85,7 @@ spec:
         - name: DB_USER        
           value: gitlab
         - name: DB_PASS         
-          value: admin@mydlq
+          value: 1qaz@WSX
         - name: DB_NAME          
           value: gitlabhq_production
         - name: REDIS_HOST
