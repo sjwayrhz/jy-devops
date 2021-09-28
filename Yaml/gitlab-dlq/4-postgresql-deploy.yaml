@@ -43,7 +43,7 @@ spec:
         - name: DB_USER
           value: gitlab
         - name: DB_PASS
-          value: admin@mydlq
+          value: 1qaz@WSX
         - name: DB_NAME
           value: gitlabhq_production
         - name: DB_EXTENSION
@@ -77,4 +77,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: gitlab-pg-pvc
+          claimName: postgresql
