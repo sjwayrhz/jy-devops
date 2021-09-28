@@ -19,7 +19,7 @@ spec:
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: postgresql
+  name: gitlab-postgresql
   labels:
     name: postgresql
 spec:
@@ -43,7 +43,7 @@ spec:
         - name: DB_USER
           value: gitlab
         - name: DB_PASS
-          value: admin@mydlq
+          value: 1qaz@WSX
         - name: DB_NAME
           value: gitlabhq_production
         - name: DB_EXTENSION
