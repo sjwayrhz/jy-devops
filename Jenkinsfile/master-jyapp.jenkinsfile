@@ -19,8 +19,6 @@ pipeline {
 
          stage ('git pull') {
             
-            mytools.PrintMes("tag = ${tag}",'green')
-
             parallel {
                 stage ('vue') {
                     when { expression { params.app == 'vue' } }
