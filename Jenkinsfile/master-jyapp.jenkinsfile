@@ -19,7 +19,6 @@ pipeline {
     environment {
         def tag = createVersion()
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
-        def warehouse = "${WORKSPACE}"/road."${params.app}"
     }
 
     stages {
@@ -27,6 +26,7 @@ pipeline {
          stage ('set warehouse') {
             
             steps {
+                def warehouse = "${WORKSPACE}"/road."${params.app}"
                 sh """
                     cd $warehouse
                     git reset --hard HEAD
