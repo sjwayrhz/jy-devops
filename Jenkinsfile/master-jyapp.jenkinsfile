@@ -24,9 +24,8 @@ pipeline {
     stages {
 
          stage ('set warehouse') {
-            
-            steps {
-                def warehouse = "${WORKSPACE}"/road."${params.app}"
+            def warehouse = "${WORKSPACE}"/road."${params.app}"
+            steps {                
                 sh """
                     cd $warehouse
                     git reset --hard HEAD
