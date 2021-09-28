@@ -23,8 +23,9 @@ pipeline {
 
     stages {
 
+        def warehouse = "${WORKSPACE}"/road."${params.app}"
+        
          stage ('set warehouse') {
-            def warehouse = "${WORKSPACE}"/road."${params.app}"
             steps {                
                 sh """
                     cd $warehouse
