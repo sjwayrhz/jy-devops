@@ -13,32 +13,20 @@ pipeline {
     environment {
         def tag = createVersion()
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
+        if [[ ${params.app} == "api" || ${params.app} == "web" ]] ;then 
+            def warehouse = "$WORKSPACE/juneyaoYun"
+        elif [ ${params.app} == "vue" ];then
+            def warehouse = "$WORKSPACE/group-app-manage"
+        fi 
     }
 
     stages {
 
-         stage ('git pull') {
+         stage ('set warehouse') {
             
-            parallel {
-                stage ('vue') {
-                    when { expression { params.app == 'vue' } }
-                    steps {
-                        sh """
-                            cd $WORKSPACE/group-app-manage
-                        """
-                    }
-                }
-                stage ('api or web') {
-                    when { expression { params.app == 'api' || params.app == 'web' } }
-                    steps {
-                        sh """
-                            cd $WORKSPACE/juneyaoYun
-                        """
-                    }
-                }
-            }
             steps {
                 sh """
+                    cd $warehouse
                     git reset --hard HEAD
                     git switch ${params.branch}
                     git fetch --all
