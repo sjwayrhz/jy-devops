@@ -25,11 +25,6 @@ pipeline {
                     steps {
                         sh """
                             cd $WORKSPACE/group-app-manage
-                            git reset --hard HEAD
-                            git switch ${params.branch}
-                            git fetch --all
-                            git reset --hard origin/${params.branch}
-                            git pull origin ${params.branch}
                         """
                     }
                 }
@@ -38,14 +33,18 @@ pipeline {
                     steps {
                         sh """
                             cd $WORKSPACE/juneyaoYun
-                            git reset --hard HEAD
-                            git switch ${params.branch}
-                            git fetch --all
-                            git reset --hard origin/${params.branch}
-                            git pull origin ${params.branch}
                         """
                     }
                 }
+            }
+            steps {
+                sh """
+                    git reset --hard HEAD
+                    git switch ${params.branch}
+                    git fetch --all
+                    git reset --hard origin/${params.branch}
+                    git pull origin ${params.branch}
+                """
             }
         }
         
