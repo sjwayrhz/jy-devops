@@ -8,7 +8,7 @@ def road = [
   "vue": "group-app-manage"
 ]
 
-def warehouse
+def project
 
 pipeline {
     agent any
@@ -21,6 +21,7 @@ pipeline {
     environment {
         def tag = createVersion()
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
+        projectName = road.params.app
     }
 
     stages {         
@@ -28,9 +29,8 @@ pipeline {
          stage ('set warehouse') {
             steps { 
                 script {
-                    warehouse =  road.api
                     sh """
-                        cd $WORKSPACE/$warehouse
+                        cd $WORKSPACE/$projectName
                         git reset --hard HEAD
                         git switch ${params.branch}
                         git fetch --all
