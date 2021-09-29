@@ -21,13 +21,13 @@ pipeline {
     environment {
         def tag = createVersion()
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
-        projectName = road."${params.app}"
     }
 
     stages {         
         
          stage ('set warehouse') {
             steps { 
+                projectName = road."${params.app}"
                 script {
                     sh """
                         cd $WORKSPACE/$projectName
