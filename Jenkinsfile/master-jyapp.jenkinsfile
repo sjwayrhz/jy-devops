@@ -25,7 +25,7 @@ pipeline {
 
     stages {         
         
-         stage ('set warehouse') {
+        stage ('git pull') {
             steps { 
                 script {
                     projectName = road."${params.app}"
