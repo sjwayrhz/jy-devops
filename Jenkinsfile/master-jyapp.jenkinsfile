@@ -8,7 +8,7 @@ def road = [
   "vue": "group-app-manage"
 ]
 
-def project
+def projectName
 
 pipeline {
     agent any
