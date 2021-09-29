@@ -42,5 +42,10 @@ redis-cli  --cluster add-node `dig +short redis-5.redis.redis-cluster.svc.cluste
 ```
 
 
+集群哪怕只有一个节点可访问，也要按照集群配置方式
+```
+  否则报错例如MOVED 1545 10.244.3.239:6379","data":false
+  如本文的情况，redis cluster的每个节点都是一个跑在k8s里面的pod，这些pod并不能被外部直接访问，而是通过ingress等方法对外暴露一个访问接口，即只有一个统一的ip：port给外部访问。经由k8s的调度，对这个统一接口的访问会被发送到redis集群的某个节点。这时候对redis的用户来说，看起来这就像是一个单节点的redis。但是，此时无论是直接使用命令行工具redis-cli，还是某种语言的sdk，还是需要按照集群来配置redis的连接信息，才能正确连接。
+```
 
 参考链接`https://blog.csdn.net/miss1181248983/article/details/106841329`
