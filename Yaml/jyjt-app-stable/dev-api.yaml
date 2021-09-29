@@ -10,6 +10,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: registry-pull-secret
+  namespace: app-office
 data:
   .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJyZWdpc3RyeS5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20iOiB7CgkJCSJhdXRoIjogImRHRnZhWE4wYlc5dWEwQXhOak11WTI5dE9sWjNkalUyZEhrMyIKCQl9Cgl9Cn0=
 type: kubernetes.io/dockerconfigjson
