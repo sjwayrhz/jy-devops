@@ -5,23 +5,19 @@ metadata:
   namespace: app-dev
 data:
   vue.conf: |-
-    upstream vue{
-      server 192.168.177.35:30085;
-    }
-    
     server {
       listen  8083;
       server_name localhost;
-      client_max_body_size 100M;
+      client_max_body_size 800M;
       access_log /var/log/nginx/vue_access_log main;
     
       location / {
         root /usr/share/nginx/html; 
-        try_files $uri $uri/ index.html;
+        index index.html;
       }
       
       location /juneyao {
-        proxy_pass http://vue;
+        proxy_pass http://dev-web.windfindtech.com;
       }
     }
 ---
@@ -83,7 +79,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: vue
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202109160925
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202109291334
           readinessProbe:
             httpGet:
               path: /

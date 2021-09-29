@@ -51,7 +51,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name:  api
-          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/develop-api:202109101554'
+          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/develop-api:202109291639'
           imagePullPolicy: IfNotPresent
           args: ["--spring.profiles.active=$(api-env-key)"]
           ports:
