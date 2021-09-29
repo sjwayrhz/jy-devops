@@ -50,7 +50,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: web
-          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/develop-web:202109061651'
+          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/master-web:202109291021'
           imagePullPolicy: IfNotPresent
           args: ["--spring.profiles.active=$(web-env-key)"]
           ports:
