@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/component: prometheus
     app.kubernetes.io/name: prometheus
     app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 2.30.0
+    app.kubernetes.io/version: 2.29.1
     prometheus: k8s
   name: k8s
   namespace: monitoring
@@ -18,7 +18,7 @@ spec:
       port: web
   enableFeatures: []
   externalLabels: {}
-  image: registry.cn-shanghai.aliyuncs.com/taoistmonk/images:prometheus-v2.29.1
+  image: registry.cn-shanghai.aliyuncs.com/taoistmonk/images:prometheus-v2.29.1 
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
@@ -26,12 +26,12 @@ spec:
       app.kubernetes.io/component: prometheus
       app.kubernetes.io/name: prometheus
       app.kubernetes.io/part-of: kube-prometheus
-      app.kubernetes.io/version: 2.30.0
+      app.kubernetes.io/version: 2.29.1
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
   probeNamespaceSelector: {}
   probeSelector: {}
-  replicas: 2
+  replicas: 1
   resources:
     requests:
       memory: 400Mi
@@ -44,4 +44,13 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  version: 2.30.0
+  version: 2.29.1
+  # fixed
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: nfs-client
+        resources:
+          requests:
+            storage: 40Gi
+  # fixed
