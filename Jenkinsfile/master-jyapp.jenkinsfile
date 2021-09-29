@@ -8,6 +8,8 @@ def road = [
   "vue": "group-app-manage"
 ]
 
+def warehouse
+
 pipeline {
     agent any
 
@@ -21,20 +23,22 @@ pipeline {
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
     }
 
-    stages {
-
-        def warehouse = "${WORKSPACE}"/road."${params.app}"
+    stages {         
         
          stage ('set warehouse') {
-            steps {                
-                sh """
-                    cd $warehouse
-                    git reset --hard HEAD
-                    git switch ${params.branch}
-                    git fetch --all
-                    git reset --hard origin/${params.branch}
-                    git pull origin ${params.branch}
-                """
+            steps { 
+                script {
+                    warehouse = "${WORKSPACE}"/road."${params.app}"
+                    sh """
+                        cd $warehouse
+                        git reset --hard HEAD
+                        git switch ${params.branch}
+                        git fetch --all
+                        git reset --hard origin/${params.branch}
+                        git pull origin ${params.branch}
+                    """
+                }              
+                
             }
         }
         
