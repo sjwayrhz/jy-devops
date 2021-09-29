@@ -21,7 +21,7 @@ pipeline {
     environment {
         def tag = createVersion()
         def repositry = "registry.cn-shanghai.aliyuncs.com/jyjt/${params.branch}-${params.app}"
-        projectName = road.params.app
+        projectName = road."${params.app}"
     }
 
     stages {         
