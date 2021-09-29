@@ -27,8 +27,8 @@ pipeline {
         
          stage ('set warehouse') {
             steps { 
-                warehouse =  "${WORKSPACE}"/road.api
                 script {
+                    warehouse =  "${WORKSPACE}"/road.api
                     sh """
                         cd $warehouse
                         git reset --hard HEAD
