@@ -73,4 +73,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: redis
+          claimName: gitlab-redis-pvc
