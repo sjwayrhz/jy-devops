@@ -12,3 +12,5 @@ git clone 的下载方式
 ```
 git clone ssh://git@gitlab.sjhz.tk:8090/sjwayrhz/devops.git
 ```
+
+使用nodeport的方式较为推荐
