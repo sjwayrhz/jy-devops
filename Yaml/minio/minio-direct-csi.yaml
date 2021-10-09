@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: minio
+  name: minio-svc
   labels:
     app: minio
 spec:
