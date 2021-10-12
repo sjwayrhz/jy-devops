@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minio
+  namespace: default
+spec:
+  rules:
+    - host: yg.minio.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: minio-service
+              servicePort: 5000

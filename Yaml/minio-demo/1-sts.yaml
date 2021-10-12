@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio
+spec:
+  serviceName: minio
+  replicas: 4
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        env:
+        - name: MINIO_ROOT_USER
+          value: "admin"
+        - name: MINIO_ROOT_PASSWORD
+          value: "root123456"
+        image: minio/minio
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/sh
+          - -c
+          - minio server --console-address ":5000" http://minio-{0...3}.minio.default.svc.cluster.local/data
+        ports:
+        - name: data
+          containerPort: 9000
+          protocol: "TCP"
+        - name: console
+          containerPort: 5000
+          protocol: "TCP"
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: date-config
+          mountPath: /etc/localtime
+      volumes:
+        - name: date-config
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: little
