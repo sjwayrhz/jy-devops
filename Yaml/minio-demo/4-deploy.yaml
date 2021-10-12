@@ -58,8 +58,8 @@ spec:
         - name: data
           containerPort: 9000
           protocol: "TCP"
-        - name: data
-          containerPort: 9000
+        - name: console
+          containerPort: 5000
           protocol: "TCP"
         # Mount the volume into the pod
         volumeMounts:
