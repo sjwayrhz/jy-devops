@@ -45,8 +45,6 @@ spec:
         # Pulls the default MinIO image from Docker Hub
         image: minio/minio
         args:
-        - /bin/sh
-        - -c
         - minio server --console-address ":5000" http://minio-{0...3}.minio.default.svc.cluster.local/data
         env:
         # MinIO access key and secret key
