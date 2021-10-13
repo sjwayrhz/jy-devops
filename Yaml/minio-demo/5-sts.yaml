@@ -37,7 +37,8 @@ spec:
         image: minio/minio
         args:
         - server
-        - --console-address ":5000" 
+        - --console-address 
+        - :5000 
         - http://minio-{0...3}.minio.default.svc.cluster.local/data
         ports:
         - name: data
