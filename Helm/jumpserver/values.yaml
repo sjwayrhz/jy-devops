@@ -134,7 +134,7 @@ core:
     #   memory: 1024Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 10Gi
