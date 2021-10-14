@@ -201,11 +201,13 @@ koko:
     # runAsUser: 1000
 
   service:
-    type: ClusterIP
+    type: NodePort
     web:
       port: 5000
+      nodePort: 30005
     ssh:
       port: 2222
+      nodePort: 32222
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -520,9 +522,10 @@ web:
     # runAsUser: 1000
 
   service:
-    type: ClusterIP
+    type: NodePort
     web:
       port: 80
+      nodePort: 30080
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
