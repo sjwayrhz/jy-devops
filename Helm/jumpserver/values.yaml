@@ -17,25 +17,25 @@ global:
   #  - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "nfs-client" ## fix nfs-client
 
 ## If the Redis database included in the chart is disabled, JumpServer will
 ## use below parameters to connect to an external Redis server.
 ##
 externalDatabase:
   engine: mysql
-  host: localhost
-  port: 3306
+  host: 192.168.177.210
+  port: 30306
   user: root
-  password: ""
+  password: 2wsx#EDC
   database: jumpserver
 
 ## If the MySQL database included in the chart is disabled, JumpServer will
 ## use below parameters to connect to an external MySQL server.
 ##
 externalRedis:
-  host: localhost
-  port: 6379
+  host: 192.168.177.210
+  port: 30379
   password: ""
 
 serviceAccount:
@@ -57,7 +57,7 @@ ingress:
        proxy_set_header Connection "Upgrade";
 
   hosts:
-    - "test.jumpserver.org"
+    - "jumpserver.sjhz.tk"
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -220,7 +220,7 @@ koko:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -301,7 +301,7 @@ lion:
     #   memory: 512Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -383,7 +383,7 @@ omnidb:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -460,7 +460,7 @@ xrdp:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -537,7 +537,7 @@ web:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: nfs-client
     accessModes:
       - ReadWriteMany
     size: 1Gi
