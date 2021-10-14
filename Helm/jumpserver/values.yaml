@@ -71,9 +71,9 @@ core:
 
   config:
     # Generate a new random secret key by execute `cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 50`
-    secretKey: ""
+    secretKey: "DKR8jCRIWKZ2fQmgaiZ8Qz9rcDaXZlUwjeHeI1oWmTYle9AOjL"
     # Generate a new random bootstrap token by execute `cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`
-    bootstrapToken: ""
+    bootstrapToken: "z1AOC35EcnBz87YM"
     # Enabled it for debug
     debug: false
     log:
