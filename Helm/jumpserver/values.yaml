@@ -35,8 +35,8 @@ externalDatabase:
 ##
 externalRedis:
   host: 192.168.177.210
-  port: 30379
-  password: ""
+  port: 30378
+  password: "123456"
 
 serviceAccount:
   # Specifies whether a service account should be created
