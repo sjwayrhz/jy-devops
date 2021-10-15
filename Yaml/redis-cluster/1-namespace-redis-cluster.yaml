@@ -1,1 +1,4 @@
-kubectl create ns redis-cluster
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redis-cluster
