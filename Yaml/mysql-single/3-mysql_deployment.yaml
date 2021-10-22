@@ -26,7 +26,12 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        - name: localtime
+          mountPath: /etc/localtime
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
