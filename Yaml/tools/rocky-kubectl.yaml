@@ -64,7 +64,6 @@ spec:
               mountPath: "/root/.ssh/authorized_keys"
               subPath: authorized_keys
               readOnly: true
-          volumeMounts:
             - name: kubectl
               mountPath: "/root/.kube/config"
               subPath: config
