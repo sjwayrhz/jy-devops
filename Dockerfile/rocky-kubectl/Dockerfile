@@ -11,7 +11,7 @@ RUN sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 COPY kubernetes.repo /etc/yum.repos.d/kubernetes.repo
 
 # 安装常用软件
-RUN dnf install -y openssh-server vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof kubectl
+RUN dnf install -y openssh-server vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof kubectl-1.21.5
 # 初始化ssh登陆
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
