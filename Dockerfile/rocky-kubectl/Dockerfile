@@ -5,7 +5,7 @@ MAINTAINER i@sjhz.cf
 RUN sed -e 's|^mirrorlist=|#mirrorlist=|g' \
     -e 's|^#baseurl=http://dl.rockylinux.org/$contentdir|baseurl=https://mirrors.sjtug.sjtu.edu.cn/rocky|g' \
     -i.bak \
-    /etc/yum.repos.d/Rocky-*.repo && \
+    /etc/yum.repos.d/Rocky-*.repo 
 
 # 拷贝kubernetes.repo
 COPY kubernetes.repo /etc/yum.repos.d/kubernetes.repo
