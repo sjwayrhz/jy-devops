@@ -6,15 +6,9 @@ RUN sed -e 's|^mirrorlist=|#mirrorlist=|g' \
     -e 's|^#baseurl=http://dl.rockylinux.org/$contentdir|baseurl=https://mirrors.sjtug.sjtu.edu.cn/rocky|g' \
     -i.bak \
     /etc/yum.repos.d/Rocky-*.repo && \
-    cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-    [kubernetes]
-    name=Kubernetes
-    baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
-    enabled=1
-    gpgcheck=1
-    repo_gpgcheck=1
-    gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-    EOF
+
+# 拷贝kubernetes.repo
+COPY kubernetes.repo /etc/yum.repos.d/kubernetes.repo
 
 # 安装常用软件
 RUN dnf install -y openssh-server vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof kubectl
