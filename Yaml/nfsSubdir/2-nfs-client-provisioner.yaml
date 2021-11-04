@@ -26,11 +26,11 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: <YOUR NFS SERVER HOSTNAME>
+              value: 10.230.7.35
             - name: NFS_PATH
-              value: <YOUR NFS SERVER SHARED DIR>
+              value: /data
       volumes:
         - name: nfs-client-root
           nfs:
-            server: <YOUR NFS SERVER HOSTNAME>
-            path: <YOUR NFS SERVER SHARED DIR>
+            server: 10.230.7.35
+            path: /data

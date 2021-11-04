@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   name: busybox-nfs
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       name: busybox-nfs
