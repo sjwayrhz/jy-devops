@@ -39,7 +39,7 @@ spec:
   selector:
     matchLabels:
       app: web
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   template:
@@ -51,7 +51,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: web
-          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/office-web:202109291621'
+          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/office-web:202111042109'
           imagePullPolicy: IfNotPresent
           args: ["--spring.profiles.active=$(web-env-key)"]
           ports:
@@ -65,10 +65,10 @@ spec:
           resources:
             limits:
               cpu: "1200m"
-              memory: "2Gi"
+              memory: "3Gi"
             requests:
               cpu: "800m"
-              memory: "1Gi" 
+              memory: "2Gi" 
           startupProbe:
             httpGet:
               path: /

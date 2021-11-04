@@ -73,7 +73,7 @@ spec:
   selector:
     matchLabels:
       app: vue
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -83,7 +83,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: vue
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/office-vue:202109160810
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202111042000
           readinessProbe:
             httpGet:
               path: /#/login
