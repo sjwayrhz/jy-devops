@@ -76,7 +76,7 @@ pipeline {
             steps{
                 sh """
                  if [ "${params.branch}" == "office" ];then {
-                        echo "office"
+                    ssh root@203.156.219.148 -p 30022 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-office"
                     }
                  elif [ "${params.branch}" == "develop" ];then {
                     ssh 192.168.177.45 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-dev"
