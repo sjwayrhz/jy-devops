@@ -1,17 +1,5 @@
 #!/bin/bash
 
-echo -e "\033[32m  配置/etc/sysctl.d/k8s.conf文件 \033[0m"
-
-sudo tee /etc/sysctl.d/k8s.conf <<-'EOF'
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-EOF
-
-sudo modprobe br_netfilter
-sudo sysctl -p /etc/sysctl.d/k8s.conf
-
-
 echo -e "\033[32m  安装必要的一些系统工具 \033[0m"
 sudo yum install yum-utils device-mapper-persistent-data lvm2 -y
 
