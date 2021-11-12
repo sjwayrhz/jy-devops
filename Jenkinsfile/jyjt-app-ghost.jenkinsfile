@@ -10,26 +10,6 @@ def road = [
 
 def projectName
 
-def getChangeString() {
-    MAX_MSG_LEN = 100
-    def changeString = ""
-
-    echo "Gathering SCM changes"
-    def changeLogSets = currentBuild.changeSets
-    for (int i = 0; i < changeLogSets.size(); i++) {
-        def entries = changeLogSets[i].items
-        for (int j = 0; j < entries.length; j++) {
-            def entry = entries[j]
-            truncated_msg = entry.msg.take(MAX_MSG_LEN)
-            changeString += " - ${truncated_msg} [${entry.author}]\n"
-        }
-    }
-    if (!changeString) {
-        changeString = " - No new changes"
-    }
-    return changeString
-}
-
 pipeline {
     agent any
 
@@ -61,16 +41,14 @@ pipeline {
                 
             }
         }
-
-        stage('输出日志') {
+        stage('get_commit_info') {
             steps {
-                script{
-                    def changeString = getChangeString()
-                    echo "$changeString"
-                }
+                script {
+                env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                env.GIT_COMMIT_ID = sh (script: 'git rev-parse --short HEAD ${GIT_COMMIT}', returnStdout: true).trim()
             }
         }
-        
+   }
         stage('compile') {
             steps {
                 sh """
