@@ -95,4 +95,19 @@ pipeline {
             }
         }
     }
+    post {
+
+        success {
+            script{
+                commitId = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                currentBuild.description = "${commitId}"               
+            }
+        }
+
+        aborted {
+            script{
+                currentBuild.description = "构建取消!" 
+            }
+        }
+    }
 }
