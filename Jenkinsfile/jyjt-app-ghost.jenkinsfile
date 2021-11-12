@@ -100,7 +100,7 @@ pipeline {
         success {
             script{
                 commitId = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                currentBuild.description = "${commitId}"               
+                currentBuild.description = "${env.GIT_COMMIT_MSG}"               
             }
         }
 
