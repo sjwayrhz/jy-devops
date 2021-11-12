@@ -41,14 +41,13 @@ pipeline {
                 
             }
         }
-        stage('get_commit_info') {
-            steps {
-                script {
-                env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-                env.GIT_COMMIT_ID = sh (script: 'git rev-parse --short HEAD ${GIT_COMMIT}', returnStdout: true).trim()
-            }
+        stage('get_commit_msg') {
+         steps {
+            script {
+               env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
         }
-   }
+      }
+      }
         stage('compile') {
             steps {
                 sh """
