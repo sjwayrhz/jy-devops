@@ -37,12 +37,11 @@ pipeline {
                         git reset --hard origin/${params.branch}
                         git pull origin ${params.branch}
                     """
-                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
                 }              
                 
             }
         }
-       
+        
         stage('compile') {
             steps {
                 sh """
@@ -87,21 +86,6 @@ pipeline {
                     }
                  fi
                 """
-            }
-        }
-    }
-    post {
-
-        success {
-            script{
-                commitId = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                currentBuild.description = "${env.GIT_COMMIT_MSG}"               
-            }
-        }
-
-        aborted {
-            script{
-                currentBuild.description = "构建取消!" 
             }
         }
     }
