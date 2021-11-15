@@ -17,7 +17,7 @@ data:
       }
       
       location /juneyao {
-        proxy_pass http://dev-web.windfindtech.com;
+        proxy_pass http://web.sjhz.gq;
       }
     }
 ---
