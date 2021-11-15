@@ -13,16 +13,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: busybox-nfs
+  name: busybox-ceph
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: busybox-nfs
+      name: busybox-ceph
   template:
     metadata:
       labels:
-        name: busybox-nfs
+        name: busybox-ceph
     spec:
       containers:
       - image: busybox
@@ -33,9 +33,9 @@ spec:
         imagePullPolicy: IfNotPresent
         name: busybox
         volumeMounts:
-          - name: nfs
+          - name: ceph 
             mountPath: "/mnt"
       volumes:
-      - name: nfs
+      - name: ceph
         persistentVolumeClaim:
           claimName: busybox-pvc
