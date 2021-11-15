@@ -14,7 +14,7 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'branch', choices: ['develop', 'master', 'office'], description: 'select the branch')
+        choice(name: 'branch', choices: ['develop', 'master'], description: 'select the branch')
         choice(name: 'app', choices: ['api', 'web', 'vue'], description: 'select the app')
     }
 
@@ -75,14 +75,11 @@ pipeline {
         stage ('kubernetes update apps') {
             steps{
                 sh """
-                 if [ "${params.branch}" == "office" ];then {
-                    ssh root@103.192.254.15 -p 30022 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-office"
-                    }
-                 elif [ "${params.branch}" == "develop" ];then {
-                    ssh 192.168.177.45 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-dev"
+                 if [ "${params.branch}" == "develop" ];then {
+                    ssh root@192.168.177.45 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-dev"
                     }
                  elif [ "${params.branch}" == "master" ];then {
-                    ssh 192.168.177.45 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-prod"
+                    ssh root@103.192.254.15 -p 30022 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-master"
                     }
                  fi
                 """
