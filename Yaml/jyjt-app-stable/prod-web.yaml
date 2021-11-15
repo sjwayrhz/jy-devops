@@ -39,7 +39,7 @@ spec:
   selector:
     matchLabels:
       app: web
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   template:
