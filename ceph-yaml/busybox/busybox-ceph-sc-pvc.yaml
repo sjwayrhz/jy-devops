@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: busybox-pvc
+spec:
+  storageClassName: rook-ceph-block
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1M
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-ceph
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: busybox-ceph
+  template:
+    metadata:
+      labels:
+        name: busybox-ceph
+    spec:
+      containers:
+      - image: busybox
+        command:
+          - sh
+          - -c
+          - 'while true; do date > /mnt/index.html; hostname >> /mnt/index.html; sleep 10m; done'
+        imagePullPolicy: IfNotPresent
+        name: busybox
+        volumeMounts:
+          - name: ceph 
+            mountPath: "/mnt"
+      volumes:
+      - name: ceph
+        persistentVolumeClaim:
+          claimName: busybox-pvc
