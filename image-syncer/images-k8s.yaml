@@ -1,0 +1,7 @@
+k8s.gcr.io/kube-apiserver: docker.io/sjwayrhz/kube-apiserver
+k8s.gcr.io/kube-controller-manager: docker.io/sjwayrhz/kube-controller-manager
+k8s.gcr.io/kube-scheduler: docker.io/sjwayrhz/kube-scheduler
+k8s.gcr.io/kube-proxy: docker.io/sjwayrhz/kube-proxy
+k8s.gcr.io/pause: docker.io/sjwayrhz/pause
+k8s.gcr.io/etcd: docker.io/sjwayrhz/etcd
+k8s.gcr.io/coredns/coredns: docker.io/sjwayrhz/coredns
