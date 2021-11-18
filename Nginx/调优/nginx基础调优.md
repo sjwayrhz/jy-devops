@@ -3,6 +3,7 @@
 nginx作为反向代理服务器时，报错： upstream timed out (110: Connection timed out)……
 
 经过百度，google看到都是修改nginx配置，解决超时问题，比如：
+``` 
 large_client_header_buffers 4 16k;
 client_max_body_size 300m;
 client_body_buffer_size 128k;
@@ -13,6 +14,7 @@ proxy_buffer_size 64k;
 proxy_buffers   4 32k;
 proxy_busy_buffers_size 64k;
 proxy_temp_file_write_size 64k;
+```
 
 但是这些都是设置缓存或者超时长度的，根本不能解决上游服务器upstream，响应慢的问题，最后通过google看到如此说的：
 
