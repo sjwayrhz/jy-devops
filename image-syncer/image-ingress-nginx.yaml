@@ -1,0 +1,2 @@
+k8s.gcr.io/ingress-nginx/controller: docker.io/sjwayrhz/controller
+k8s.gcr.io/ingress-nginx/kube-webhook-certgen: docker.io/sjwayrhz/kube-webhook-certgen
