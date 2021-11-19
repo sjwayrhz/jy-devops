@@ -1,0 +1,56 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-clusterip
+  namespace: app-prod
+spec:
+  selector:
+    app: api
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8081
+      targetPort: 8081
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: web-clusterip
+  namespace: app-prod
+spec:
+  selector:
+    app: web
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8082
+      targetPort: 8082
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: vue-clusterip
+  namespace: app-prod
+spec:
+  selector:
+    app: vue
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8083
+      targetPort: 8083
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: redbag-clusterip
+  namespace: app-prod
+spec:
+  selector:
+    app: redbag
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8084
+      targetPort: 8084
+

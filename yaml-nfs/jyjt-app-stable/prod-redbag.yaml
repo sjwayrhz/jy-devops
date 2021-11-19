@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: vue-config
+  name: redbag-config
   namespace: app-prod
 data:
-  vue.conf: |-
+  redbag.conf: |-
     server {
-      listen  8083;
+      listen  8084;
       server_name localhost;
       client_max_body_size 800M;
-      access_log /var/log/nginx/vue_access_log main;
+      access_log /var/log/nginx/redbag_access_log main;
     
       location / {
         root /usr/share/nginx/html; 
         index index.html;
       }
       
-      location /juneyao {
-        proxy_pass http://web.sjhz.gq;
+      location /lottery{
+        proxy_pass http://api.juneyaokc.com/api/lottery;
       }
     }
 ---
@@ -33,7 +33,7 @@ type: kubernetes.io/dockerconfigjson
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: vue-pvc
+  name: redbag-pvc
   namespace: app-prod
 spec:
   storageClassName: nfs-client
@@ -46,44 +46,44 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: vue-nodeport
+  name: redbag-nodeport
   namespace: app-prod
 spec:
   selector:
-    app: vue
+    app: redbag
   type: NodePort
   ports:
     - protocol: "TCP"
-      port: 8083
-      targetPort: 8083
-      nodePort: 30083
+      port: 8084
+      targetPort: 8084
+      nodePort: 30084
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vue
+  name: redbag
   namespace: app-prod
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
-      app: vue
+      app: redbag
   replicas: 1
   template:
     metadata:
       labels:
-        app: vue
+        app: redbag
     spec:
       imagePullSecrets: 
         - name: registry-pull-secret
       containers:
-        - name: vue
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/office-vue:202109160810
+        - name: redbag
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-redbag:0.0.1
           readinessProbe:
             httpGet:
               path: /#/login
-              port: 8083
+              port: 8084
             initialDelaySeconds: 3
             failureThreshold: 5
             periodSeconds: 3
@@ -96,17 +96,17 @@ spec:
               memory: "100Mi"
           ports:
           - name: http
-            containerPort: 8083
+            containerPort: 8084
           volumeMounts:
-          - name: vueconf
+          - name: redbagconf
             mountPath: /etc/nginx/conf.d/
             readOnly: true
-          - name: vuelog
+          - name: redbaglog
             mountPath: /var/log/nginx/
       volumes:
-      - name: vueconf
+      - name: redbagconf
         configMap:
-          name: vue-config
-      - name: vuelog
+          name: redbag-config
+      - name: redbaglog
         persistentVolumeClaim:
-          claimName: vue-pvc
+          claimName: redbag-pvc

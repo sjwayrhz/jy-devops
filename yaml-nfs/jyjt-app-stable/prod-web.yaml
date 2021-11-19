@@ -100,10 +100,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-service
+  name: web-nodeport
   namespace: app-prod
   labels:
-    name: web-service
+    name: web-nodeport
 spec:
   type: NodePort
   ports:
