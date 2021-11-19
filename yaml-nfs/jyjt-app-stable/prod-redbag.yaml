@@ -17,6 +17,13 @@ data:
       }
       
       location /lottery{
+
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Connection ""; 
+        
         proxy_pass http://api.juneyaokc.com/api/lottery;
       }
     }
