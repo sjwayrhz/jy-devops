@@ -49,9 +49,21 @@ spec:
     spec:
       imagePullSecrets: 
         - name: registry-pull-secret
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - api
+              topologyKey: kubernetes.io/hostname
       containers:
         - name:  api
-          image: 'registry.cn-shanghai.aliyuncs.com/jyjt/master-api:202109061659'
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-api:202111191652
           imagePullPolicy: IfNotPresent
           args: ["--spring.profiles.active=$(api-env-key)"]
           ports:
@@ -62,18 +74,6 @@ spec:
               configMapKeyRef:
                 name:  api-config
                 key: api-env 
-          startupProbe:
-            httpGet:
-              path: /
-              port: 8081
-            failureThreshold: 30
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8081
-            failureThreshold: 1
-            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /swagger-ui.html
@@ -84,11 +84,11 @@ spec:
             periodSeconds: 10
           resources:
             limits:
-              cpu: "1800m"
-              memory: "2Gi"
+              cpu: "4"
+              memory: "4Gi"
             requests:
-              cpu: "1200m"
-              memory: "1Gi" 
+              cpu: "3"
+              memory: "3Gi" 
           volumeMounts: 
             - name: nfs
               mountPath: /logs
