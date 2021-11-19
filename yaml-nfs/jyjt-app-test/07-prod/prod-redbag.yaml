@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redbag-config
+  namespace: app-prod
+data:
+  redbag.conf: |-
+    server {
+      listen  8084;
+      server_name localhost;
+      client_max_body_size 800M;
+      access_log /var/log/nginx/redbag_access_log main;
+    
+      location / {
+        root /usr/share/nginx/html; 
+        index index.html;
+      }
+      
+      location /lottery{
+        proxy_pass http://api.juneyaokc.com/api/lottery;
+      }
+    }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry-pull-secret
+  namespace: app-prod
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJyZWdpc3RyeS5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20iOiB7CgkJCSJhdXRoIjogImRHRnZhWE4wYlc5dWEwQXhOak11WTI5dE9sWjNkalUyZEhrMyIKCQl9Cgl9Cn0=
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redbag-pvc
+  namespace: app-prod
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1G
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: redbag
+  namespace: app-prod
+spec:
+  selector:
+    app: redbag
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8084
+      targetPort: 8084
+      nodePort: 30084
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redbag
+  namespace: app-prod
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app: redbag
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redbag
+    spec:
+      imagePullSecrets: 
+        - name: registry-pull-secret
+      containers:
+        - name: redbag
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-redbag:0.0.1
+          readinessProbe:
+            httpGet:
+              path: /#/login
+              port: 8084
+            initialDelaySeconds: 3
+            failureThreshold: 5
+            periodSeconds: 3
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "200Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+          ports:
+          - name: http
+            containerPort: 8084
+          volumeMounts:
+          - name: redbagconf
+            mountPath: /etc/nginx/conf.d/
+            readOnly: true
+          - name: redbaglog
+            mountPath: /var/log/nginx/
+      volumes:
+      - name: redbagconf
+        configMap:
+          name: redbag-config
+      - name: redbaglog
+        persistentVolumeClaim:
+          claimName: redbag-pvc
