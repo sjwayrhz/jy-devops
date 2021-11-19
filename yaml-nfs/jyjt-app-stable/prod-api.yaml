@@ -74,14 +74,6 @@ spec:
               configMapKeyRef:
                 name:  api-config
                 key: api-env 
-          readinessProbe:
-            httpGet:
-              path: /swagger-ui.html
-              port: 8081
-            initialDelaySeconds: 40
-            successThreshold: 1
-            failureThreshold: 3
-            periodSeconds: 10
           resources:
             limits:
               cpu: "4"
