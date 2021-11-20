@@ -9,6 +9,9 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
+  # fixed
+  type: NodePort
+  # fixed
   ports:
   - name: http
     port: 3000
