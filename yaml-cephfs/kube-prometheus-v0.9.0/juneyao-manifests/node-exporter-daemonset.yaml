@@ -34,7 +34,7 @@ spec:
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
         - --collector.netclass.ignored-devices=^(veth.*|[a-f0-9]{15})$
         - --collector.netdev.device-exclude=^(veth.*|[a-f0-9]{15})$
-        image: quay.io/prometheus/node-exporter:v1.2.2
+        image: sjwayrhz/node-exporter:v1.2.2
         name: node-exporter
         resources:
           limits:
@@ -62,7 +62,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        image: quay.io/brancz/kube-rbac-proxy:v0.11.0
+        image: sjwayrhz/kube-rbac-proxy:v0.11.0
         name: kube-rbac-proxy
         ports:
         - containerPort: 9100

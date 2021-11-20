@@ -1,3 +1,18 @@
+# fixed
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: grafana-pvc
+    namespace: monitoring
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: rook-ceph
+# fixed
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,7 +44,7 @@ spec:
     spec:
       containers:
       - env: []
-        image: grafana/grafana:8.2.3
+        image: sjwayrhz/grafana:8.2.3
         name: grafana
         ports:
         - containerPort: 3000
@@ -135,8 +150,13 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - emptyDir: {}
-        name: grafana-storage
+      # fixed
+      #- emptyDir: {}
+      #  name: grafana-storage
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+      # fixed
       - name: grafana-datasources
         secret:
           secretName: grafana-datasources
