@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
       - env: []
-        image: sjwayrhz/grafana:8.2.3
+        image: grafana/grafana:8.2.3
         name: grafana
         ports:
         - containerPort: 3000
