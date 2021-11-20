@@ -1,0 +1,17 @@
+apiVersion: v2
+appVersion: 6.2.6
+description: A Helm chart for Redis
+home: https://github.com/pascaliske/helm-charts/tree/master/charts/redis
+keywords:
+- redis
+maintainers:
+- email: info@pascaliske.dev
+  name: pascaliske
+  url: https://pascaliske.dev
+name: redis
+sources:
+- https://github.com/pascaliske/helm-charts
+- https://github.com/docker-library/redis
+- https://redis.io
+type: application
+version: 0.0.2
