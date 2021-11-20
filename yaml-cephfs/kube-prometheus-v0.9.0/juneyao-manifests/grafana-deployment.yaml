@@ -10,7 +10,7 @@ spec:
   resources:
     requests:
       storage: 50Gi
-  storageClassName: rook-ceph
+  storageClassName: rook-cephfs
 # fixed
 ---
 apiVersion: apps/v1
