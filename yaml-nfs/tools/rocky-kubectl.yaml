@@ -56,7 +56,7 @@ spec:
             defaultMode: 384
       containers:
         - name: rocky-ssh
-          image: sjwayrhz/rocky-8.4:kubectl
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/images:kubectl-0.0.1
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: ssh
