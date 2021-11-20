@@ -28,11 +28,11 @@ spec:
       containers:
       - args:
         - --kubelet-service=kube-system/kubelet
-        - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.52.0
+        - --prometheus-config-reloader=sjwayrhz/prometheus-config-reloader:v0.52.0
         # fixed
         - storage.tsdb.retention.time=30d # set 30d for a month
         # fixed
-        image: quay.io/prometheus-operator/prometheus-operator:v0.52.0
+        image: sjwayrhz/prometheus-operator:v0.52.0
         name: prometheus-operator
         ports:
         - containerPort: 8080
