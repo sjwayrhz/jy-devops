@@ -17,7 +17,7 @@ global:
   #  - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "rook-cephfs" ## fix nfs-client
+  storageClass: "rook-cephfs" ## fix rook-cephfs
 
 ## If the Redis database included in the chart is disabled, JumpServer will
 ## use below parameters to connect to an external Redis server.
@@ -134,7 +134,7 @@ core:
     #   memory: 1024Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -220,7 +220,7 @@ koko:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -301,7 +301,7 @@ lion:
     #   memory: 512Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -364,11 +364,13 @@ omnidb:
     # runAsUser: 1000
 
   service:
-    type: ClusterIP
+    type: NodePort
     web:
       port: 8082
+      nodePort: 30180
     ws:
       port: 8071
+      nodePort: 30122
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -383,7 +385,7 @@ omnidb:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -460,7 +462,7 @@ xrdp:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -537,7 +539,7 @@ web:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: nfs-client
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 1Gi
