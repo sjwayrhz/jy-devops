@@ -1,3 +1,7 @@
+# From URL
+```
+https://artifacthub.io/packages/helm/wso2/mysql
+```
 # ⚠️ Repo Archive Notice
 
 As of Nov 13, 2020, charts in this repo will no longer be updated.
