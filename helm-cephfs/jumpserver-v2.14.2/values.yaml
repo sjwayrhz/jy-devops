@@ -367,10 +367,8 @@ omnidb:
     type: NodePort
     web:
       port: 8082
-      nodePort: 30180
     ws:
       port: 8071
-      nodePort: 30122
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
