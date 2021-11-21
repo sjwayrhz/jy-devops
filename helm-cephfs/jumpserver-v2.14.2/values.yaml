@@ -201,7 +201,7 @@ koko:
     # runAsUser: 1000
 
   service:
-    type: NodePort
+    type: ClusterIP
     web:
       port: 5000
     ssh:
@@ -364,7 +364,7 @@ omnidb:
     # runAsUser: 1000
 
   service:
-    type: NodePort
+    type: ClusterIP
     web:
       port: 8082
     ws:
@@ -520,7 +520,7 @@ web:
     # runAsUser: 1000
 
   service:
-    type: NodePort
+    type: ClusterIP
     web:
       port: 80
 
