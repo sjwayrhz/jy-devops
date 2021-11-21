@@ -173,6 +173,7 @@ configurationFiles:
      sort_buffer_size=32M
      thread_cache_size=120
      query_cache_size=32M
+     bind-address=0.0.0.0
 
 # Custom mysql init SQL files used to initialize the database
 initializationFiles: {}
