@@ -147,18 +147,16 @@ configurationFiles:
      [mysqld]
      port = 3306
      socket = /tmp/mysql.sock
-     skip-locking
      skip-name-resolve
      back_log = 384
      key_buffer_size = 256M
      max_allowed_packet = 4M
      thread_stack = 256K
-     table_cache = 128K
      sort_buffer_size = 6M
      read_buffer_size = 4M
      join_buffer_size = 8M
      myisam_sort_buffer_size = 64M
-     table_cache = 512
+     table_cache = 512K
      thread_cache_size = 64
      query_cache_size = 64M
      tmp_table_size = 256M
