@@ -145,30 +145,17 @@ configurationFilesPath: /etc/mysql/conf.d/
 configurationFiles: 
   mysql.cnf: |-
      [mysqld]
-     back_log = 384
-     key_buffer_size = 256M
-     max_allowed_packet = 4M
-     thread_stack = 256K
-     sort_buffer_size = 6M
-     read_buffer_size = 4M
-     join_buffer_size = 8M
-     myisam_sort_buffer_size = 64M
-     thread_cache_size = 64
-     query_cache_size = 64M
-     tmp_table_size = 256M
-     max_connections = 768 
-     max_connect_errors = 10000000
-     wait_timeout = 10
-     innodb_flush_log_at_trx_commit=1
-     innodb_log_buffer_size=2M
-     innodb_thread_concurrency=8
-     key_buffer_size=256M
-     tmp_table_size=64M
-     read_buffer_size=4M
-     read_rnd_buffer_size=16M
-     sort_buffer_size=32M
-     thread_cache_size=120
-     query_cache_size=32M
+     port = 3306
+     socket = /tmp/mysql.sock
+     max_connections=1024
+     event_scheduler=ON
+     skip-name-resolve
+     default-storage-engine=INNODB
+     max_allowed_packet=256M
+     group_concat_max_len=200000
+     innodb_log_file_size=1024M
+     innodb_log_buffer_size=8M
+
 
 # Custom mysql init SQL files used to initialize the database
 initializationFiles: {}
