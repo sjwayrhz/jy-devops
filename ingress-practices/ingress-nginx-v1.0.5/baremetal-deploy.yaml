@@ -406,6 +406,9 @@ spec:
       # fixed
       # kubernetes.io/os: linux
         kubernetes.io/hostname: k8s-master
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
       # fixed
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
@@ -632,6 +635,9 @@ spec:
       # fixed
       # kubernetes.io/os: linux
         kubernetes.io/hostname: k8s-master
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
       # fixed
       securityContext:
         runAsNonRoot: true
@@ -687,6 +693,9 @@ spec:
       # fixed
       # kubernetes.io/os: linux
         kubernetes.io/hostname: k8s-master
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
       # fixed
       securityContext:
         runAsNonRoot: true

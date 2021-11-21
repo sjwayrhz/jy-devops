@@ -34,8 +34,13 @@ baremetal 环境下原生支持的nodeSelector是hostname是linux，可以改为
 ```
       nodeSelector:
         kubernetes.io/hostname: k8s-master
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
 ```
 这可能有三处相同的参数需要修改
+单独修改nodeSelector是不够的，还需要添加容忍。
+
 ### 修改image ID
 镜像名称需要修改
 ```
