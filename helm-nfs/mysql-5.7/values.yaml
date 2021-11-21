@@ -134,8 +134,8 @@ resources:
     memory: 256Mi
     cpu: 100m
   limits:
-    memory: 4Gi
-    cpu: 4
+    memory: 4096Mi
+    cpu: 4000m
 # Custom mysql configuration files path
 configurationFilesPath: /etc/mysql/conf.d/
 
