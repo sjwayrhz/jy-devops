@@ -130,12 +130,13 @@ securityContext:
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources:
-  requests:
-    memory: 256Mi
-    cpu: 100m
   limits:
     memory: 8192Mi
     cpu: 4
+  requests:
+    memory: 256Mi
+    cpu: 100m
+  
 
 # Custom mysql configuration files path
 configurationFilesPath: /etc/mysql/conf.d/
@@ -144,7 +145,6 @@ configurationFilesPath: /etc/mysql/conf.d/
 configurationFiles: 
   mysql.cnf: |-
      [mysqld]
-     max_connections=10000
      port = 3306
      serverid = 1
      socket = /tmp/mysql.sock
@@ -163,6 +163,7 @@ configurationFiles:
      thread_cache_size = 64
      query_cache_size = 64M
      tmp_table_size = 256M
+     max_connections = 768 
      max_connect_errors = 10000000
      wait_timeout = 10
      thread_concurrency = 8
