@@ -160,7 +160,6 @@ configurationFiles:
      thread_cache_size = 64
      query_cache_size = 64M
      tmp_table_size = 256M
-     max_connections = 768
      max_connect_errors = 10000000
      wait_timeout = 10
      thread_concurrency = 8
