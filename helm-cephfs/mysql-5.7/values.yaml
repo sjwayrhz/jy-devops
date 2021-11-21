@@ -146,7 +146,6 @@ configurationFiles:
   mysql.cnf: |-
      [mysqld]
      port = 3306
-     serverid = 1
      socket = /tmp/mysql.sock
      skip-locking
      skip-name-resolve
