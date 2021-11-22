@@ -24,7 +24,7 @@ data:
         proxy_http_version 1.1;
         proxy_set_header Connection ""; 
         
-        proxy_pass http://api.juneyaokc.com:30080/api/lottery;
+        proxy_pass http://10.220.62.240:30081/api/lottery;
       }
     }
 ---

@@ -24,7 +24,7 @@ data:
         proxy_http_version 1.1;
         proxy_set_header Connection ""; 
         
-        proxy_pass http://web.juneyaokc.com:30080;
+        proxy_pass http://10.220.62.240:30082;
       }
     }
 ---
