@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jms-koko
+  labels:
+    app.jumpserver.org/name: jms-koko
+spec:
+  type: NodePort
+  ports:
+    - name: jms-koko
+      port: 2222
+      nodePort: 32222
+  selector:
+    app.jumpserver.org/name: jms-koko

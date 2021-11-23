@@ -25,17 +25,17 @@ global:
 ##
 externalDatabase:
   engine: mysql
-  host: localhost
+  host: 10.220.62.10 # fixed but need change
   port: 3306
   user: root
-  password: ""
+  password: "2wsx#EDC"
   database: jumpserver
 
 ## If the MySQL database included in the chart is disabled, JumpServer will
 ## use below parameters to connect to an external MySQL server.
 ##
 externalRedis:
-  host: localhost
+  host: 10.220.62.10  # fixed but need change
   port: 6379
   password: ""
 
@@ -58,7 +58,7 @@ ingress:
        proxy_set_header Connection "Upgrade";
 
   hosts:
-    - "test.jumpserver.org"
+    - "jumpserver.juneyaokc.com"
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -72,9 +72,9 @@ core:
 
   config:
     # Generate a new random secret key by execute `cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 50`
-    secretKey: ""
+    secretKey: "Vg7zLOdJXDzCIZDGLPVVtVWM2pLxikSlu0djV2b8kuI0FMG2kp"  # fixed
     # Generate a new random bootstrap token by execute `cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`
-    bootstrapToken: ""
+    bootstrapToken: "NOXAKeqM2Ioyb5gQ"
     # Enabled it for debug
     debug: false
     log:
@@ -135,7 +135,7 @@ core:
     #   memory: 1024Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -221,7 +221,7 @@ koko:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -302,7 +302,7 @@ lion:
     #   memory: 512Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -384,7 +384,7 @@ omnidb:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -461,7 +461,7 @@ xrdp:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 10Gi
@@ -538,7 +538,7 @@ web:
     #   memory: 128Mi
 
   persistence:
-    storageClassName: jumpserver-data
+    storageClassName: rook-cephfs
     accessModes:
       - ReadWriteMany
     size: 1Gi
