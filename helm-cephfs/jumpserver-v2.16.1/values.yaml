@@ -18,7 +18,7 @@ global:
   #  - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "rook-cephfs"  # fixed
 
 ## If the Redis database included in the chart is disabled, JumpServer will
 ## use below parameters to connect to an external Redis server.
