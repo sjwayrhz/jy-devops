@@ -1,1 +1,0 @@
-存储有关使用rook-ceph作为存储的yaml脚本,sc名称为 rook-ceph-block
