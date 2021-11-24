@@ -19,7 +19,7 @@ metadata:
   labels:
     app: wordpress
 spec:
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -51,7 +51,7 @@ spec:
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: changeme
+              value: 2wsx#EDC
           ports:
             - containerPort: 3306
               name: mysql
