@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: v3.12.1
+description: Qfusion installer
+name: qfusion-installer
+type: application
+version: v3.12.1
