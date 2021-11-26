@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: vue-nodeport
+  namespace: app-prod
+spec:
+  selector:
+    app: vue
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8083
+      targetPort: 8083
+      nodePort: 30083

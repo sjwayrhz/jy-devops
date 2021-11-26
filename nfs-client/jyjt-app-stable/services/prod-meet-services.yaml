@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: meet-nodeport
+  namespace: app-prod
+spec:
+  selector:
+    app: meet
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8085
+      targetPort: 8085
+      nodePort: 30085

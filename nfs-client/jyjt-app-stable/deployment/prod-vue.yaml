@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: meet-config
+  name: vue-config
   namespace: app-prod
 data:
-  meet.conf: |-
+  vue.conf: |-
     server {
-      listen  8085;
+      listen  8083;
       server_name localhost;
       client_max_body_size 800M;
-      access_log /var/log/nginx/meet_access_log main;
+      access_log /var/log/nginx/vue_access_log main;
     
       location / {
         root /usr/share/nginx/html; 
         index index.html;
       }
       
-      location /api {
+      location /juneyao {
 
         proxy_set_header   X-Real-IP $remote_addr;
         proxy_set_header   Host      $http_host;
@@ -24,7 +24,7 @@ data:
         proxy_http_version 1.1;
         proxy_set_header Connection ""; 
         
-        proxy_pass http://10.220.62.240:30081;
+        proxy_pass http://10.220.62.240:30082;
       }
     }
 ---
@@ -40,7 +40,7 @@ type: kubernetes.io/dockerconfigjson
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: meet-pvc
+  name: vue-pvc
   namespace: app-prod
 spec:
   storageClassName: nfs-client
@@ -50,47 +50,32 @@ spec:
     requests:
       storage: 1G
 ---
-kind: Service
-apiVersion: v1
-metadata:
-  name: meet-nodeport
-  namespace: app-prod
-spec:
-  selector:
-    app: meet
-  type: NodePort
-  ports:
-    - protocol: "TCP"
-      port: 8085
-      targetPort: 8085
-      nodePort: 30085
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: meet
+  name: vue
   namespace: app-prod
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels:
-      app: meet
+      app: vue
   replicas: 1
   template:
     metadata:
       labels:
-        app: meet
+        app: vue
     spec:
       imagePullSecrets: 
         - name: registry-pull-secret
       containers:
-        - name: meet
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-meet:v1.0
+        - name: vue
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-vue:202109160810
           readinessProbe:
             httpGet:
               path: /#/login
-              port: 8085
+              port: 8083
             initialDelaySeconds: 3
             failureThreshold: 5
             periodSeconds: 3
@@ -103,17 +88,17 @@ spec:
               memory: "100Mi"
           ports:
           - name: http
-            containerPort: 8085
+            containerPort: 8083
           volumeMounts:
-          - name: meetconf
+          - name: vueconf
             mountPath: /etc/nginx/conf.d/
             readOnly: true
-          - name: meetlog
+          - name: vuelog
             mountPath: /var/log/nginx/
       volumes:
-      - name: meetconf
+      - name: vueconf
         configMap:
-          name: meet-config
-      - name: meetlog
+          name: vue-config
+      - name: vuelog
         persistentVolumeClaim:
-          claimName: meet-pvc
+          claimName: vue-pvc

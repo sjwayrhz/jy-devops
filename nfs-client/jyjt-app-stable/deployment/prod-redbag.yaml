@@ -50,21 +50,6 @@ spec:
     requests:
       storage: 1G
 ---
-kind: Service
-apiVersion: v1
-metadata:
-  name: redbag-nodeport
-  namespace: app-prod
-spec:
-  selector:
-    app: redbag
-  type: NodePort
-  ports:
-    - protocol: "TCP"
-      port: 8084
-      targetPort: 8084
-      nodePort: 30084
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
