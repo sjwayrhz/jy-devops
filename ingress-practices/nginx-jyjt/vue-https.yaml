@@ -4,6 +4,7 @@ metadata:
   name: vue-https
   namespace: app-prod
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
