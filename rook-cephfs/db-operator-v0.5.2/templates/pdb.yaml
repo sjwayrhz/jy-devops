@@ -1,0 +1,21 @@
+{{- if and .Values.podDisruptionBudget.enabled (gt (int64 .Values.replicas) 1) }}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "db-operator.fullname" . }}
+  labels:
+    app: {{ template "db-operator.name" . }}
+    chart: {{ template "db-operator.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  {{- if .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  {{- end }}
+  {{- if .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ template "db-operator.name" . }}
+{{- end }}
