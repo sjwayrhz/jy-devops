@@ -36,9 +36,6 @@ spec:
   pxc:
     size: 3
     image: percona/percona-xtradb-cluster:8.0.23-14.1
-    env:
-    - name: TZ
-      value: Asia/Shanghai
     autoRecovery: true
 #    expose:
 #      enabled: true
@@ -162,9 +159,6 @@ spec:
     enabled: true
     size: 3
     image: percona/percona-xtradb-cluster-operator:1.10.0-haproxy
-    env:
-    - name: TZ
-      value: Asia/Shanghai
 #    replicasServiceEnabled: false
 #    imagePullPolicy: Always
 #    schedulerName: mycustom-scheduler
@@ -300,9 +294,6 @@ spec:
     enabled: false
     size: 3
     image: percona/percona-xtradb-cluster-operator:1.10.0-proxysql
-    env:
-    - name: TZ
-      value: Asia/Shanghai
 #    imagePullPolicy: Always
 #    configuration: |
 #      datadir="/var/lib/proxysql"
@@ -435,9 +426,6 @@ spec:
   logcollector:
     enabled: true
     image: percona/percona-xtradb-cluster-operator:1.10.0-logcollector
-    env:
-    - name: TZ
-      value: Asia/Shanghai
 #    configuration: |
 #      [OUTPUT]
 #           Name  es
@@ -453,9 +441,6 @@ spec:
   pmm:
     enabled: false
     image: percona/pmm-client:2.23.0
-    env:
-    - name: TZ
-      value: Asia/Shanghai
     serverHost: monitoring-service
     serverUser: admin
 #    pxcParams: "--disable-tablestats-limit=2000"
@@ -466,9 +451,6 @@ spec:
         cpu: 300m
   backup:
     image: percona/percona-xtradb-cluster-operator:1.10.0-pxc8.0-backup
-    env:
-    - name: TZ
-      value: Asia/Shanghai
 #    serviceAccountName: percona-xtradb-cluster-operator
 #    imagePullSecrets:
 #      - name: private-registry-credentials
