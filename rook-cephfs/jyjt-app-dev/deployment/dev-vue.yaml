@@ -9,7 +9,7 @@ data:
       listen  8083;
       server_name localhost;
       client_max_body_size 800M;
-      access_log /var/log/nginx/vue_access_log main;
+      access_log /var/log/nginx/dev_vue_access_log main;
     
       location / {
         root /usr/share/nginx/html; 
@@ -71,7 +71,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: vue
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-vue:202109160810
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202112040346
           readinessProbe:
             httpGet:
               path: /#/login
