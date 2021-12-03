@@ -1,15 +1,16 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: redbag-clusterip
+  name: redbag-nodeport
   namespace: app-dev
   labels:
-    name: redbag-clusterip
+    name:  redbag-nodeport
 spec:
   selector:
     app: redbag
-  type: ClusterIP
+  type: NodePort
   ports:
     - protocol: "TCP"
       port: 8084
       targetPort: 8084
+      nodePort: 30084

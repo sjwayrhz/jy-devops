@@ -1,15 +1,16 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: meet-clusterip
+  name: meet-nodeport
   namespace: app-dev
   labels:
-    name: meet-clusterip
+    name:  meet-nodeport
 spec:
   selector:
     app: meet
-  type: ClusterIP
+  type: NodePort
   ports:
     - protocol: "TCP"
       port: 8085
       targetPort: 8085
+      nodePort: 30085

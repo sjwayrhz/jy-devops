@@ -72,26 +72,6 @@ spec:
           volumeMounts: 
             - name: nfs
               mountPath: /logs
-          startupProbe:
-            httpGet:
-              path: /
-              port: 8082
-            failureThreshold: 30
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8082
-            failureThreshold: 1
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /swagger-ui.html
-              port: 8082
-            initialDelaySeconds: 40
-            successThreshold: 1
-            failureThreshold: 3
-            periodSeconds: 10
       volumes:
         - name: nfs
           persistentVolumeClaim:
