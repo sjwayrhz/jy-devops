@@ -1,14 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: vue-nodeport
+  name: vue-clusterip
   namespace: app-dev
+  labels:
+    name: vue-clusterip
 spec:
   selector:
     app: vue
-  type: NodePort
+  type: ClusterIP
   ports:
     - protocol: "TCP"
       port: 8083
       targetPort: 8083
-      nodePort: 30083
