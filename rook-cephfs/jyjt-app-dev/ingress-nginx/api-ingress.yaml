@@ -19,6 +19,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: api-clusterip
+            name: api-nodeport
             port:
               number: 8081

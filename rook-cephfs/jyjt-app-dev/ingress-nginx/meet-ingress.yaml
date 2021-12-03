@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: meet-clusterip
+            name: meet-nodeport
             port:
               number: 8085

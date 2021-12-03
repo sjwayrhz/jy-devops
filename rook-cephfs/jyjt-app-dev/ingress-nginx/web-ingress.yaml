@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: web-clusterip
+            name: web-nodeport
             port:
               number: 8082

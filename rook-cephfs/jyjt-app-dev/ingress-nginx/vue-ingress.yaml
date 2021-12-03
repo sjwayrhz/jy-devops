@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: vue-clusterip
+            name: vue-nodeport
             port:
               number: 8083
