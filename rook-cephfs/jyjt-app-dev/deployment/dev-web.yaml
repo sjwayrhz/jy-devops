@@ -4,7 +4,7 @@ metadata:
   name: web-config
   namespace: app-dev
 data:
-  web-env: prod
+  web-env: dev
 ---
 apiVersion: v1
 kind: Secret

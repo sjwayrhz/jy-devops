@@ -4,7 +4,7 @@ metadata:
   name:  api-config
   namespace: app-dev
 data:
-  api-env: prod
+  api-env: dev
 ---
 apiVersion: v1
 kind: Secret
