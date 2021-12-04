@@ -31,9 +31,9 @@ spec:
       - name: minio
         env:
         - name: MINIO_ACCESS_KEY
-          value: "root123"
+          value: "wBh26XzE7Qq5rdP"
         - name: MINIO_SECRET_KEY
-          value: "adminadmin"
+          value: "wEVp8SZ225p5zVVMHQsXfHtUQGvJTx"
         image: minio/minio
         args:
         - server
