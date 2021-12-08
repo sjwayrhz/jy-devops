@@ -20,36 +20,36 @@ replicaCount: 1
 ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ##
 ingress:
-  enabled: false
-  # className: nginx
+  enabled: true
+  className: nginx
   annotations: {}
-  #  nginx.ingress.kubernetes.io/proxy-body-size: 4G
-  #  kubernetes.io/tls-acme: "true"
-  #  cert-manager.io/cluster-issuer: letsencrypt-prod
-  #  nginx.ingress.kubernetes.io/server-snippet: |-
-  #    server_tokens off;
-  #    proxy_hide_header X-Powered-By;
+  nginx.ingress.kubernetes.io/proxy-body-size: 4G
+  kubernetes.io/tls-acme: "true"
+  cert-manager.io/cluster-issuer: letsencrypt-prod
+  nginx.ingress.kubernetes.io/server-snippet: |-
+    server_tokens off;
+    proxy_hide_header X-Powered-By;
 
-  #    rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
-  #    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
-  #    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-  #    location = /.well-known/carddav {
-  #      return 301 $scheme://$host/remote.php/dav;
-  #    }
-  #    location = /.well-known/caldav {
-  #      return 301 $scheme://$host/remote.php/dav;
-  #    }
-  #    location = /robots.txt {
-  #      allow all;
-  #      log_not_found off;
-  #      access_log off;
-  #    }
-  #    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-  #      deny all;
-  #    }
-  #    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
-  #      deny all;
-  #    }
+    rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+    location = /.well-known/carddav {
+      return 301 $scheme://$host/remote.php/dav;
+    }
+    location = /.well-known/caldav {
+      return 301 $scheme://$host/remote.php/dav;
+    }
+    location = /robots.txt {
+      allow all;
+      log_not_found off;
+      access_log off;
+    }
+    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+      deny all;
+    }
+    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+      deny all;
+    }
   # tls:
   #   - secretName: nextcloud-tls
   #     hosts:
@@ -66,9 +66,9 @@ lifecycle: {}
   # preStopCommand: []
 
 nextcloud:
-  host: nextcloud.kube.home
+  host: nextcloud.juneyaokc.com
   username: admin
-  password: changeme
+  password: admin
   ## Use an existing secret
   existingSecret:
     enabled: false
@@ -85,7 +85,7 @@ nextcloud:
     subPath:
   mail:
     enabled: false
-    fromAddress: user
+    fromAddress: taoistmonk@126.com
     domain: domain.com
     smtp:
       host: domain.com
@@ -117,34 +117,36 @@ nextcloud:
     smtp.config.php: true
   # Extra config files created in /var/www/html/config/
   # ref: https://docs.nextcloud.com/server/15/admin_manual/configuration_server/config_sample_php_parameters.html#multiple-config-php-file
-  configs: {}
+  configs: 
 
   # For example, to use S3 as primary storage
   # ref: https://docs.nextcloud.com/server/13/admin_manual/configuration_files/primary_storage.html#simple-storage-service-s3
   #
-  #  configs:
-  #    s3.config.php: |-
-  #      <?php
-  #      $CONFIG = array (
-  #        'objectstore' => array(
-  #          'class' => '\\OC\\Files\\ObjectStore\\S3',
-  #          'arguments' => array(
-  #            'bucket'     => 'my-bucket',
-  #            'autocreate' => true,
-  #            'key'        => 'xxx',
-  #            'secret'     => 'xxx',
-  #            'region'     => 'us-east-1',
-  #            'use_ssl'    => true
-  #          )
-  #        )
-  #      );
+  #configs:
+    s3.config.php: |-
+      <?php
+      $CONFIG = array (
+        'objectstore' => array(
+          'class' => '\\OC\\Files\\ObjectStore\\S3',
+          'arguments' => array(
+            'bucket'     => 'test',
+            'autocreate' => true,
+            'key'        => 'wBh26XzE7Qq5rdP',
+            'secret'     => 'wEVp8SZ225p5zVVMHQsXfHtUQGvJTx',
+            'hostname' => '121.46.238.136',
+            'port' => 30090,
+            'region'     => 'optional',
+            'use_ssl'    => false
+          )
+        )
+      );
 
   ## Strategy used to replace old pods
   ## IMPORTANT: use with care, it is suggested to leave as that for upgrade purposes
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
   strategy:
-    type: Recreate
-    # type: RollingUpdate
+    # type: Recreate
+    type: RollingUpdate
     # rollingUpdate:
     #   maxSurge: 1
     #   maxUnavailable: 0
@@ -194,26 +196,26 @@ nginx:
   resources: {}
 
 internalDatabase:
-  enabled: true
+  enabled: false
   name: nextcloud
 
 ##
 ## External database configuration
 ##
 externalDatabase:
-  enabled: false
+  enabled: true
 
   ## Supported database engines: mysql or postgresql
   type: mysql
 
   ## Database host
-  host:
+  host: 10.225.63.50
 
   ## Database user
-  user: nextcloud
+  user: root
 
   ## Database password
-  password:
+  password: 2wsx#EDC
 
   ## Database name
   database: nextcloud
@@ -235,7 +237,7 @@ mariadb:
   auth:
     database: nextcloud
     username: nextcloud
-    password: changeme
+    password: nextcloud
 
   architecture: standalone
 
@@ -245,7 +247,7 @@ mariadb:
   primary:
     persistence:
       enabled: false
-      # storageClass: ""
+      storageClass: rook-cephfs
       accessMode: ReadWriteOnce
       size: 8Gi
 
@@ -256,16 +258,16 @@ mariadb:
 postgresql:
   enabled: false
   postgresqlUsername: nextcloud
-  postgresqlPassword: changeme
+  postgresqlPassword: nextcloud
   postgresqlDatabase: nextcloud
   persistence:
-    enabled: false
-    # storageClass: ""
+    enabled: true
+    storageClass: rook-cephfs
 
 redis:
-  enabled: false
-  usePassword: true
-  password: 'changeme'
+  enabled: true
+  usePassword: false
+  password: 'nextcloud'
 
 ## Cronjob to execute Nextcloud background tasks
 ## ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html#webcron
@@ -330,7 +332,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  storageClass: "rook-cephfs"
 
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
@@ -346,22 +348,22 @@ persistence:
     enabled: false
     subPath:
     annotations: {}
-    # storageClass: "-"
+    storageClass: "rook-cephfs"
     # existingClaim:
     accessMode: ReadWriteOnce
     size: 8Gi
 
-resources: {}
+resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 ## Liveness and readiness probe values
 ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
@@ -408,7 +410,7 @@ affinity: {}
 ## Prometheus Exporter / Metrics
 ##
 metrics:
-  enabled: false
+  enabled: true
 
   replicaCount: 1
   # The metrics exporter needs to know how you serve Nextcloud either http or https
@@ -441,7 +443,7 @@ metrics:
     labels: {}
 
 rbac:
-  enabled: false
+  enabled: true
   serviceaccount:
     create: true
     name: nextcloud-serviceaccount
