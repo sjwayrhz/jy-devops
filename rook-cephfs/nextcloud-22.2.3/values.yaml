@@ -211,6 +211,9 @@ externalDatabase:
   ## Database host
   host: 10.225.63.50
 
+  ## Database port
+  port: 30106
+
   ## Database user
   user: root
 
