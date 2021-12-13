@@ -9,8 +9,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "600m"
 spec:
+  tls:
+  - hosts:
+    - api.juneyaokc.com
+    secretName: juneyaokc-nginx-secret
   rules:
   - host: "api.juneyaokc.com"
     http:
