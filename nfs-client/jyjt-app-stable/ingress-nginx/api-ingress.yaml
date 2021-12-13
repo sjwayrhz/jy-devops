@@ -14,7 +14,7 @@ spec:
   tls:
   - hosts:
     - api.juneyaokc.com
-    secretName: juneyaokc-nginx-secret
+    secretName: api-juneyaokc-com
   rules:
   - host: "api.juneyaokc.com"
     http:
