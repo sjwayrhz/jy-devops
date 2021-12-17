@@ -93,16 +93,16 @@ gitlab_rails['time_zone'] = 'CST'
 ###! Docs: https://docs.gitlab.com/omnibus/settings/smtp.html
 ###! **Use smtp instead of sendmail/postfix.**
 
-# gitlab_rails['smtp_enable'] = true
-# gitlab_rails['smtp_address'] = "smtp.server"
-# gitlab_rails['smtp_port'] = 465
-# gitlab_rails['smtp_user_name'] = "smtp user"
-# gitlab_rails['smtp_password'] = "smtp password"
-# gitlab_rails['smtp_domain'] = "example.com"
-# gitlab_rails['smtp_authentication'] = "login"
-# gitlab_rails['smtp_enable_starttls_auto'] = true
-# gitlab_rails['smtp_tls'] = false
-# gitlab_rails['smtp_pool'] = false
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = "smtp.126.com"
+gitlab_rails['smtp_port'] = 465
+gitlab_rails['smtp_user_name'] = "taoistmonk@126.com"
+gitlab_rails['smtp_password'] = "OVPWVQPNJAWURLKL"
+gitlab_rails['smtp_authentication'] = "login"
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = true
+gitlab_rails['gitlab_email_from'] = 'taoistmonk@126.com'
+gitlab_rails['smtp_domain'] = "smtp.126.com"
 
 ###! **Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert'**
 ###! Docs: http://api.rubyonrails.org/classes/ActionMailer/Base.html
