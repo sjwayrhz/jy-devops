@@ -4,6 +4,16 @@
 ## 需要证书密钥 /etc/gitlab/ssl/star_juneyaokc_com.key
 ## 所有修改的地方都含有  
 
+## tree /etc/gitlab/
+## /etc/gitlab/
+## |-- gitlab.rb
+## |-- gitlab.rb.bak
+## `-- ssl
+##     |-- star_juneyaokc_com.key
+##     `-- star_juneyaokc_com.pem
+## 
+## 1 directory, 4 files
+
 ## GitLab configuration settings
 ##! This file is generated during initial installation and **is not** modified
 ##! during upgrades.
