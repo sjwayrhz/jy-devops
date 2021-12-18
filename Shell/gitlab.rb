@@ -1879,9 +1879,9 @@ nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/star_juneyaokc_com.key"
 ###! **To enable only Monitoring service in this machine, uncomment
 ###!   the line below.**
 ###! Docs: https://docs.gitlab.com/ee/administration/high_availability
-# monitoring_role['enable'] = true
+monitoring_role['enable'] = false
 
-# prometheus['enable'] = true
+prometheus['enable'] = false
 # prometheus['monitor_kubernetes'] = true
 # prometheus['username'] = 'gitlab-prometheus'
 # prometheus['group'] = 'gitlab-prometheus'
@@ -1964,7 +1964,7 @@ nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/star_juneyaokc_com.key"
 ## Prometheus Alertmanager
 ################################################################################
 
-# alertmanager['enable'] = true
+alertmanager['enable'] = false
 # alertmanager['home'] = '/var/opt/gitlab/alertmanager'
 # alertmanager['log_directory'] = '/var/log/gitlab/alertmanager'
 # alertmanager['admin_email'] = 'admin@example.com'
@@ -1987,7 +1987,7 @@ nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/star_juneyaokc_com.key"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/node_exporter.html
 ################################################################################
 
-# node_exporter['enable'] = true
+node_exporter['enable'] = false
 # node_exporter['home'] = '/var/opt/gitlab/node-exporter'
 # node_exporter['log_directory'] = '/var/log/gitlab/node-exporter'
 # node_exporter['flags'] = {
@@ -2095,7 +2095,7 @@ nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/star_juneyaokc_com.key"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/#prometheus-as-a-grafana-data-source
 ################################################################################
 
-# grafana['enable'] = true
+grafana['enable'] = false
 # grafana['log_directory'] = '/var/log/gitlab/grafana'
 # grafana['home'] = '/var/opt/gitlab/grafana'
 # grafana['admin_password'] = 'admin'
