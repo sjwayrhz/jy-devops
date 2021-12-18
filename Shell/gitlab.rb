@@ -81,7 +81,7 @@ external_url 'https://gitlab.juneyaokc.com'
 ################################################################################
 # gitlab_rails['gitlab_ssh_host'] = 'ssh.host_example.com'
 # gitlab_rails['gitlab_ssh_user'] = ''
-gitlab_rails['time_zone'] = 'CST' 
+gitlab_rails['time_zone'] = 'Asia/Shanghai' 
 
 ### Request duration
 ###! Tells the rails application how long it has to complete a request
