@@ -164,7 +164,7 @@ gitlab_rails['smtp_domain'] = "smtp.126.com"
 # gitlab_rails['gitlab_repository_downloads_path'] = 'tmp/repositories'
 
 ### Gravatar Settings
-# gitlab_rails['gravatar_plain_url'] = 'http://www.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon'
+gitlab_rails['gravatar_plain_url'] = 'http://cdn.libravatar.org/avatar/%{hash}?s=%{size}&d=identicon'
 # gitlab_rails['gravatar_ssl_url'] = 'https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon'
 
 ### Auxiliary jobs
