@@ -93,16 +93,30 @@ gitlab_rails['time_zone'] = 'Asia/Shanghai'
 ###! Docs: https://docs.gitlab.com/omnibus/settings/smtp.html
 ###! **Use smtp instead of sendmail/postfix.**
 
+# this is my email which address is taoistmonk@126.com
+# gitlab_rails['smtp_enable'] = true
+# gitlab_rails['smtp_address'] = "smtp.126.com"
+# gitlab_rails['smtp_port'] = 465
+# gitlab_rails['smtp_user_name'] = "taoistmonk@126.com"
+# gitlab_rails['smtp_password'] = "OVPWVQPNJAWURLKL"
+# gitlab_rails['smtp_authentication'] = "login"
+# gitlab_rails['smtp_enable_starttls_auto'] = true
+# gitlab_rails['smtp_tls'] = true
+# gitlab_rails['gitlab_email_from'] = 'taoistmonk@126.com'
+# gitlab_rails['smtp_domain'] = "smtp.126.com"
+
+# this is my email which address is ops@juneyaokc.com
 gitlab_rails['smtp_enable'] = true
-gitlab_rails['smtp_address'] = "smtp.126.com"
+gitlab_rails['smtp_address'] = "smtp.exmail.qq.com"
 gitlab_rails['smtp_port'] = 465
-gitlab_rails['smtp_user_name'] = "taoistmonk@126.com"
-gitlab_rails['smtp_password'] = "OVPWVQPNJAWURLKL"
+gitlab_rails['smtp_user_name'] = "ops@juneyaokc.com"
+gitlab_rails['smtp_password'] = "2wsxCDE#"
 gitlab_rails['smtp_authentication'] = "login"
 gitlab_rails['smtp_enable_starttls_auto'] = true
 gitlab_rails['smtp_tls'] = true
-gitlab_rails['gitlab_email_from'] = 'taoistmonk@126.com'
-gitlab_rails['smtp_domain'] = "smtp.126.com"
+gitlab_rails['gitlab_email_from'] = 'ops@juneyaokc.com'
+gitlab_rails['smtp_domain'] = "exmail.qq.com"
+
 
 ###! **Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert'**
 ###! Docs: http://api.rubyonrails.org/classes/ActionMailer/Base.html
