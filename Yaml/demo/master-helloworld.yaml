@@ -4,6 +4,7 @@ metadata:
   labels:
     app: helloworld
   name: deployment-helloworld
+  namespace: master-helloworld
 spec:
   replicas: 1
   selector:
@@ -15,5 +16,5 @@ spec:
         app: helloworld
     spec:
       containers:
-      - image: registry.cn-shanghai.aliyuncs.com/jyjt/helloworld:2
+      - image: registry.cn-shanghai.aliyuncs.com/jyjt/helloworld:34
         name: helloworld
