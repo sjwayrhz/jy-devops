@@ -1,0 +1,52 @@
+stages:
+  - compile
+  - build
+  - deploy
+
+maven-compile:
+  stage: compile
+  image: sjwayrhz/maven:3.8.4-jdk-8
+  tags:
+    - dood
+  script: 
+    - pwd
+    - ls
+    - $MAVEN_HOME/bin/mvn clean install 
+  artifacts:
+    paths:
+      - target/demo-0.0.1-SNAPSHOT.jar
+
+build-docker:
+  stage: build
+  image: docker:19.03.12
+  tags:
+    - dood
+  variables:
+    DOCKER_DRIVER: overlay2
+  script:
+    - echo VERSION=$CI_PIPELINE_IID    
+    - export VERSION=$CI_PIPELINE_IID
+    - docker info
+    - docker build -t registry.cn-shanghai.aliyuncs.com/jyjt/spring-boot-demo:$VERSION .
+    - docker login -u taoistmonk@163.com -p Vwv56ty7 registry.cn-shanghai.aliyuncs.com
+    - docker push registry.cn-shanghai.aliyuncs.com/jyjt/spring-boot-demo:$VERSION
+    - docker rmi -f registry.cn-shanghai.aliyuncs.com/jyjt/spring-boot-demo:$VERSION
+    - docker rmi -f `docker images | grep  "<none>" | awk '{print $3}'`
+  only:
+    - main
+
+# https://docs.gitlab.com/ee/ci/ssh_keys/
+deloy-k8s:
+  stage: deploy
+  tags:
+    - dood
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - echo -n "$SSH_PRIVATE_KEY" | ssh-add - >/dev/null
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script: 
+    - echo "prepare for deploy"
+    - ssh root@10.225.63.20 -p 30022 "kubectl set image deployment/demo-hwy-1 demo=registry.cn-shanghai.aliyuncs.com/jyjt/spring-boot-demo:$VERSION -n default"
+
