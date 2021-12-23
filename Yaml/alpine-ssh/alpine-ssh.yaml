@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-ssh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: alpine-ssh
+  template:
+    metadata:
+      labels:
+        name: alpine-ssh
+    spec:
+      containers:
+      - image: docker.sjhz.tk:5000/alpine-ssh:0.1
+        imagePullPolicy: IfNotPresent
+        name: alpine-ssh
