@@ -79,12 +79,12 @@ data:
   # The default version of CSI supported by Rook will be started. To change the version
   # of the CSI driver to something other than what is officially supported, change
   # these images to the desired release of the CSI driver.
-  ROOK_CSI_CEPH_IMAGE: "sjwayrhz/cephcsi:v3.4.0"
-  ROOK_CSI_REGISTRAR_IMAGE: "sjwayrhz/csi-node-driver-registrar:v2.3.0"
-  ROOK_CSI_RESIZER_IMAGE: "sjwayrhz/csi-resizer:v1.3.0"
-  ROOK_CSI_PROVISIONER_IMAGE: "sjwayrhz/csi-provisioner:v3.0.0"
-  ROOK_CSI_SNAPSHOTTER_IMAGE: "sjwayrhz/csi-snapshotter:v4.2.0"
-  ROOK_CSI_ATTACHER_IMAGE: "sjwayrhz/csi-attacher:v3.3.0"
+  ROOK_CSI_CEPH_IMAGE: "docker.io/sjwayrhz/cephcsi:v3.4.0"
+  ROOK_CSI_REGISTRAR_IMAGE: "docker.io/sjwayrhz/csi-node-driver-registrar:v2.3.0"
+  ROOK_CSI_RESIZER_IMAGE: "docker.io/sjwayrhz/csi-resizer:v1.3.0"
+  ROOK_CSI_PROVISIONER_IMAGE: "docker.io/sjwayrhz/csi-provisioner:v3.0.0"
+  ROOK_CSI_SNAPSHOTTER_IMAGE: "docker.io/sjwayrhz/csi-snapshotter:v4.2.0"
+  ROOK_CSI_ATTACHER_IMAGE: "docker.io/sjwayrhz/csi-attacher:v3.3.0"
 
   # (Optional) set user created priorityclassName for csi plugin pods.
   # CSI_PLUGIN_PRIORITY_CLASSNAME: "system-node-critical"
