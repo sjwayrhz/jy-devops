@@ -11,6 +11,10 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
 spec:
+  tls:
+  - hosts:
+    - redbag.juneyaokc.com
+    secretName: redbag-juneyaokc-com
   rules:
   - host: "redbag.juneyaokc.com"
     http:
