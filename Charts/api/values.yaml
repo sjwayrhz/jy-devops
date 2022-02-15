@@ -56,11 +56,11 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-            backend:
-              service:
-                name: api
-                port:
-                  number: 8081
+          backend:
+            service:
+              name: api
+              port:
+                number: 8081
   tls: 
    - secretName: api-juneyaokc-secret
      hosts:
