@@ -62,7 +62,7 @@ ingress:
               port:
                 number: 8083
   tls: [] 
-    # - secretName: juneyaokc-nginx-secret
+    # - secretName: vue-juneyaokc-secret
     #  hosts:
     #   - vue.juneyaokc.com
 
