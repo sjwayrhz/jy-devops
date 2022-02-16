@@ -5,7 +5,7 @@ image:
   repository: mariadb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "10.7.1"
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -49,10 +49,10 @@ securityContext:
 
 ## Default database service port (default MySQL/MariaDB port)
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3306
   ## The node port (only relevant for type LoadBalancer or NodePort)
-  nodePort:
+  nodePort: 30306
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer)
@@ -185,7 +185,7 @@ storage:
   requestedSize:
 
   ## the storage class name
-  className:
+  className: cephfs
 
   ## Default access mode (ReadWriteOnce)
   accessModes:
