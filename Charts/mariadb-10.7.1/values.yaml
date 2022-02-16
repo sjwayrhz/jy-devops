@@ -124,29 +124,29 @@ env: []
 ## Database configuration
 settings:
   ## Arguments for the container entrypoint process
-  arguments: []
-  #  - --character-set-server=utf8mb4
-  #  - --collation-server=utf8mb4_unicode_ci
+  arguments: 
+   - --character-set-server=utf8mb4
+   - --collation-server=utf8mb4_unicode_ci
 
   ## The root user password
-  rootPassword:
+  rootPassword: 2wsx#EDC
 
   ## Set true to allow an empty root password
-  allowEmptyRootPassword: false
+  allowEmptyRootPassword: yes
 
   ## Set true to skip loading timezone data during init
   skipTZInfo: false
 
 ## Optional user database which is created during first startup with user and password
-userDatabase: {}
+userDatabase: 
   ## Name of the user database
-  # name:
+  name: sjwayrhz
 
   ## Database user with full access rights
-  # user:
+  user: sjwayrhz
 
   ## Password of the database user
-  # password:
+  password: 1qaz@WSX
 
 ## Optional custom configuration block that will be mounted as file in /etc/mysql/conf.d/custom.cnf
 ## For more flexible options see extraSecretConfigs: section
