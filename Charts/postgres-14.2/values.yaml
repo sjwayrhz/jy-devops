@@ -148,7 +148,7 @@ userDatabase:
   user: sjwayrhz
 
   ## Password of the database user
-  password: 1qaz#EDC
+  password: 1qaz@WSX
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 ## For more flexible options see extraSecretConfigs: section
