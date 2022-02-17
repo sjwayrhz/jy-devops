@@ -1,8 +1,0 @@
-apiVersion: v2
-appVersion: 6.2.6
-description: A Helm chart for Redis on Kubernetes
-maintainers:
-- name: groundhog2k
-name: redis
-type: application
-version: 0.4.11
