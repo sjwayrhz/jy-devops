@@ -5,7 +5,7 @@ image:
   repository: postgres
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "14.2"
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -46,10 +46,10 @@ securityContext:
 
 ## The postgres service configuration (Default is ClusterIP with port 5432)
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5432
   ## The node port (only relevant for type LoadBalancer or NodePort)
-  nodePort:
+  nodePort: 32432
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer)
@@ -140,15 +140,15 @@ settings:
   initDbArgs:
 
 ## Optional user database which is created during first startup with user and password
-userDatabase: {}
+userDatabase: 
   ## Name of the user database
-  # name:
+  name: sjwayrhz
 
   ## Database user with full access rights
-  # user:
+  user: sjwayrhz
 
   ## Password of the database user
-  # password:
+  password: 2wsx#EDC
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 ## For more flexible options see extraSecretConfigs: section
@@ -186,7 +186,7 @@ storage:
   requestedSize:
 
   ## the storage class name
-  className:
+  className: cephfs
 
   ## Default access mode (ReadWriteOnce)
   accessModes:
