@@ -126,18 +126,18 @@ args: []
 ## Database configuration
 settings:
   ## The default postgres superuser (default when nothing is set: "postgres")
-  superuser:
+  superuser: root
 
   ## The superuser password
-  superuserPassword:
+  superuserPassword: 2wsx#EDC
 
   ## Postgres database authentication method
   ## For example: "md5"
-  authMethod:
+  authMethod: md5
 
   ## Optional init database arguments
   ## For example: "--auth-local=md5"
-  initDbArgs:
+  initDbArgs: --auth-local=md5
 
 ## Optional user database which is created during first startup with user and password
 userDatabase: 
@@ -148,7 +148,7 @@ userDatabase:
   user: sjwayrhz
 
   ## Password of the database user
-  password: 2wsx#EDC
+  password: 1qaz#EDC
 
 ## Optional custom configuration block that will be mounted as file in /etc/postgresql/postgresql.conf
 ## For more flexible options see extraSecretConfigs: section
