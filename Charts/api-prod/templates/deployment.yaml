@@ -33,7 +33,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ["--spring.profiles.active={{ .Values.image.cliargs }}"]
+          args: ["--spring.profiles.active={{ .Values.cliargs }}"]
           ports:
             - name: http
               containerPort: 8081
