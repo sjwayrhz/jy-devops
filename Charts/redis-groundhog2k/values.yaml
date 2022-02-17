@@ -5,7 +5,7 @@ image:
   repository: redis
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "6.2.6"
 
 ## Pull secrets and name override options
 imagePullSecrets: []
@@ -50,13 +50,13 @@ securityContext:
 ## Default redis service port (default Redis server port 6379, defaul Redis sentinel port 26379)
 service:
   ## Type of service (not available when haMode is enabled)
-  type: ClusterIP
+  type: NodePort
   ## Redis server port
   serverPort: 6379
   ## Redis sentinel mode (only when haMode is enabled)
   sentinelPort: 26379
   ## The node port (only relevant for type LoadBalancer or NodePort - not available when haMode is enabled)
-  nodePort:
+  nodePort: 32379
   ## The cluster ip address (only relevant for type LoadBalancer or NodePort)
   clusterIP:
   ## The loadbalancer ip address (only relevant for type LoadBalancer - not available when haMode is enabled)
@@ -211,7 +211,7 @@ storage:
   requestedSize:
 
   ## the storage class name
-  className:
+  className: cephfs
 
   ## Default access mode (ReadWriteOnce)
   accessModes:
