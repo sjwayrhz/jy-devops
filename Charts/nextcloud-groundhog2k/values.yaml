@@ -23,14 +23,14 @@ strategy:
   type: RollingUpdate
 
 ## Internal default cron jobs (cron.php)
-defaultCronJobs:
-  - name: cronphp
-    schedule: "*/5 * * * *"
-    command: "php -f /var/www/html/cron.php"
-    nodeSelector: {}
-    tolerations: []
-    affinity: {}
-    resources: {}
+defaultCronJobs: {}
+#   - name: cronphp
+#     schedule: "*/5 * * * *"
+#     command: "php -f /var/www/html/cron.php"
+#     nodeSelector: {}
+#     tolerations: []
+#     affinity: {}
+#     resources: {}
 
 ## Additional cron jobs
 cronJobs: {}
