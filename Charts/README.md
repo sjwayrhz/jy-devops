@@ -1,1 +1,1 @@
-储存helm chart
+储存helm charts
