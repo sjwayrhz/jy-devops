@@ -5,12 +5,15 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: registry.cn-shanghai.aliyuncs.com/jyjt/master-web
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "202202141711"
 
-imagePullSecrets: []
+cliargs: prod
+
+imagePullSecrets: 
+  - name: registry-pull-secret
 nameOverride: ""
 fullnameOverride: ""
 
@@ -37,8 +40,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8082
+  nodePort: 30082
 
 ingress:
   enabled: false
