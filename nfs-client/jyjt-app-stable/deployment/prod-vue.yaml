@@ -26,6 +26,17 @@ data:
         
         proxy_pass http://10.220.62.240:30082;
       }
+
+      location /api {
+
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Connection ""; 
+        
+        proxy_pass http://10.220.62.240:30081;
+      }
     }
 ---
 apiVersion: v1

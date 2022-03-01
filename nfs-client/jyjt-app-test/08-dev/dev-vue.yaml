@@ -17,7 +17,25 @@ data:
       }
       
       location /juneyao {
+
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Connection ""; 
+
         proxy_pass http://dev-web.windfindtech.com;
+      }
+
+      location /api {
+
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Connection ""; 
+        
+        proxy_pass http://dev-api.windfindtech.com;
       }
     }
 ---
@@ -69,7 +87,7 @@ spec:
   selector:
     matchLabels:
       app: vue
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -79,7 +97,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: vue
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202109291334
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/develop-vue:202203010915
           readinessProbe:
             httpGet:
               path: /
