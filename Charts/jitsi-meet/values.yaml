@@ -32,9 +32,9 @@ web:
   ingress:
     enabled: true
     ingressClassName: "nginx-ingress-0"
-    annotations: 
-      kubernetes.io/ingress.class: nginx
-      kubernetes.io/tls-acme: "true"
+    # annotations: 
+    #   kubernetes.io/ingress.class: nginx
+    #   kubernetes.io/tls-acme: "true"
     hosts:
     - host: test.juneyaokc.com
       paths: ['/']
