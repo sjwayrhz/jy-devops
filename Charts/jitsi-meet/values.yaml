@@ -13,7 +13,7 @@ enableAuth: false
 enableGuests: true
 publicURL: ""
 
-tz: Europe/Amsterdam
+tz: Asia/Shanghai
 
 image:
   pullPolicy: IfNotPresent
@@ -30,18 +30,18 @@ web:
     externalIPs: []
 
   ingress:
-    enabled: false
-    # ingressClassName: "nginx-ingress-0"
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
+    enabled: true
+    ingressClassName: "nginx-ingress-0"
+    annotations: 
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
     hosts:
-    - host: jitsi.local
+    - host: test.juneyaokc.com
       paths: ['/']
     tls: []
-    #  - secretName: jitsi-web-certificate
-    #    hosts:
-    #      - jitsi.local
+     - secretName: jitsi-web-certificate
+       hosts:
+         - test.juneyaokc.com
 
   # Useful for ingresses that don't support http-to-https redirect by themself, (namely: GKE),
   httpRedirect: false
