@@ -38,7 +38,7 @@ web:
     hosts:
     - host: test.juneyaokc.com
       paths: ['/']
-    tls: []
+    tls: 
      - secretName: jitsi-web-certificate
        hosts:
          - test.juneyaokc.com
