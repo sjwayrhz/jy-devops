@@ -301,7 +301,9 @@ spec:
 ---
 # Source: ingress-nginx/templates/controller-deployment.yaml
 apiVersion: apps/v1
-kind: Deployment
+# fixed
+kind: DaemonSet
+# fixed
 metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.0.7
