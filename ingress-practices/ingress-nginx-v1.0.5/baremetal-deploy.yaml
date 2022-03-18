@@ -405,7 +405,7 @@ spec:
       nodeSelector:
       # fixed
       # kubernetes.io/os: linux
-        kubernetes.io/ingress: nginx
+        kubernetes.io/ingress: nginx-ingress
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
@@ -634,7 +634,7 @@ spec:
       nodeSelector:
       # fixed
       # kubernetes.io/os: linux
-        kubernetes.io/ingress: nginx
+        kubernetes.io/ingress: nginx-ingress
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
@@ -692,7 +692,7 @@ spec:
       nodeSelector:
       # fixed
       # kubernetes.io/os: linux
-        kubernetes.io/ingress: nginx
+        kubernetes.io/ingress: nginx-ingress
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
