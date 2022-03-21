@@ -1,0 +1,30 @@
+{{  if .Values.app.sidekiq }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sidekiq
+  labels:
+    app: {{ .Release.Name }}
+    team: {{ .Values.project.team }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount_sidekiq }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-sidekiq
+        #image: "410196150672.dkr.ecr.cn-north-1.amazonaws.com.cn/oral3@sha256:2d2bd1ad823f029cedc67471674ac760d70940a7d6291d26edd70762a9b62fd7"
+        image: "{{ .Values.images.rails.repository }}:{{ .Values.images.rails.tag }}"
+        imagePullPolicy: {{ .Values.images.rails.pullPolicy }}
+        args: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-env
+{{ end }}

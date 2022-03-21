@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    {{ if .Values.project.https }}
+      {{ include "nginx.ingress.https" . | indent 4 }}
+    {{ else if .Values.project.httpsOnly }}
+      {{ include "nginx.ingress.httpsOnly" . | indent 4 }}
+    {{ else }}
+      {{ include "nginx.ingress.http" . | indent 4 }}
+    {{ end }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
+spec:
+  {{ if or .Values.project.https .Values.project.httpsOnly }}
+    {{ include "nginx.ingress.enableTls" . | indent 2 }}
+  {{ end }}
+  rules:
+    - host: {{ .Values.project.fqdn }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ .Release.Name }}
+              servicePort: 80
+            path: /

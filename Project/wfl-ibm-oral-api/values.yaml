@@ -1,0 +1,73 @@
+#replicaCount: 1
+replicaCount: 15
+
+images:
+  repository: registry-vpc.cn-shanghai.aliyuncs.com/ac-wfl/ibm-oral-api
+  pullPolicy: Always
+  tag: "0.1.0"
+
+service:
+  name: http
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080
+
+nas:
+  server: 347dc4bb54-cjt92.cn-shanghai.nas.aliyuncs.com
+  path: /
+
+podAnnotations: {}
+
+project:
+  name: "ibm-oral-api"
+  fqdn: "ibm-oral-api.wfl-ischool.cn"
+  team: "oral"
+
+crons:
+  - name: delete old audio logs
+    schedule: "25 23 * * *"
+    # schedule: "5 2 * * *"
+    command:
+      - find /asrcn/assessment/logs/ -maxdepth 1 -mindepth 1 -type d -mtime +6 -exec rm -rf {} \;
+
+livenessProbe:
+  path: "/assessment/api/hc"
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  failureThreshold: 3
+  timeoutSeconds: 5
+readinessProbe:
+  path: "/assessment/api/en?o=v3&s=(Good morning)(hello)"
+  initialDelaySeconds: 30
+  periodSeconds: 30
+  failureThreshold: 3
+  timeoutSeconds: 5
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+app: {}
+
+app_env: {}

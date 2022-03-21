@@ -1,0 +1,47 @@
+{{  if .Values.rake_task }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-{{ .Values.rake_task.name }}"
+  labels:
+    app: {{ .Release.Name }}
+    team: {{ .Values.project.team }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: "{{ .Release.Name }}-{{ .Values.rake_task.name }}"
+        image: "{{ .Values.images.rails.repository }}:{{ .Values.images.rails.tag }}"
+        imagePullPolicy: Always
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "Executing docker-entrypoint.sh ......";
+            /docker-entrypoint.sh;
+            echo "Task starting ......";
+            {{- range .Values.rake_task.task }}
+            echo "Executing task {{ . }}";
+            echo "--------------------------------------------------------";
+            bundle exec rake {{ . }};
+            {{- end }}
+            echo "Task completed. Please delete k8s job by running helm upgrade without value yaml file for the job";
+            echo "Runing tail -f to keep pod open ......";
+            tail -f /dev/null
+        # volumeMounts:
+        # - name: tmp-vol
+        #   mountPath: /app/tmp
+        # - name: public-vol
+        #   mountPath: /public
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-env
+      restartPolicy: Never
+      # volumes:
+      # - name: tmp-vol
+      #   emptyDir: {}
+      # - name: public-vol
+      #   emptyDir: {}
+  backoffLimit: 1
+{{ end }}

@@ -1,0 +1,54 @@
+replicaCount: 8
+
+images:
+  rails:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/oral3
+    pullPolicy: Always
+    #tag: "sha256:2d2bd1ad823f029cedc67471674ac760d70940a7d6291d26edd70762a9b62fd7"
+    tag: "0.1.0"
+  reverse_proxy:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/nginx-reverse-proxy-puma-assets
+    pullPolicy: Always
+    tag: "0.1.0"
+
+app:
+  sidekiq: true
+  reverse_proxy: true
+
+app_env:
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: enabled
+  MYSQL_HOST: rm-uf666p34z7385dxl2.mysql.rds.aliyuncs.com
+  MYSQL_DB: oral3
+  MYSQL_USER: oral3_dba
+  MYSQL_PASSWORD: MxE79joA
+  MYSQL_TIMEOUT: "5000"
+  MYSQL_ENCODING: utf8mb4
+  MYSQL_COLLATION: utf8mb4_unicode_ci
+  RAILS_MAX_THREADS: "16"
+  RAILS_MAX_WORKER: "1"
+
+project:
+  name: "智学通"
+  fqdn: oral3.wfl-ischool.cn
+  team: oral
+
+crons:
+  - name: push-deadline
+    schedule: "*/5 * * * *"
+    command:
+      - /bin/sh
+      - -c
+      - bundle exec rake anytime:push_deadline
+  - name: fastens-generate-activity-reads
+    schedule: "0 1 7 * *"
+    command:
+      - /bin/sh
+      - -c
+      - bundle exec rake fastens:generate_activity_reads
+  - name: gen-activity-through
+    schedule: "0 1 * * *"
+    command:
+      - /bin/sh
+      - -c
+      - bundle exec rake fastens:generate_activity_through

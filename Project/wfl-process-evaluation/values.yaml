@@ -1,0 +1,31 @@
+replicaCount: 1
+
+images:
+  rails:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/process-evaluation
+    pullPolicy: Always
+    tag: "0.1.0"
+  reverse_proxy:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/nginx-reverse-proxy-puma-assets
+    pullPolicy: Always
+    tag: "0.1.0"
+
+app:
+  sidekiq: false
+  reverse_proxy: true
+
+app_env:
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: enabled
+  MYSQL_HOST: rm-uf666p34z7385dxl2.mysql.rds.aliyuncs.com
+  MYSQL_DB: process_evaluation
+  MYSQL_USER: process_evaluation_dba
+  MYSQL_PASSWORD: k7hr9iKo
+  MYSQL_TIMEOUT: "5000"
+  MYSQL_ENCODING: utf8mb4
+  MYSQL_COLLATION: utf8mb4_unicode_ci
+
+project:
+  name: process-evaluation
+  fqdn: process-evaluation.wfl-ischool.cn
+  team: oral

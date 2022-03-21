@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+    team: {{ .Values.project.team }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      volumes:
+      - name: shared-file-cache
+        persistentVolumeClaim:
+          claimName: pvc-{{ .Release.Name }}
+      containers:
+      - name: {{ .Release.Name }}
+        image: "{{ .Values.images.repository }}:{{ .Values.images.tag }}"
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        # args: ['tail', '-f', '/dev/null']
+        args: ['bundle', 'exec', 'puma', '-C', '/app/config/puma.rb']
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-env
+        volumeMounts:
+        - name: shared-file-cache
+          mountPath: /app/public/audios
+      - name: {{ .Release.Name }}-sidekiq
+        image: "{{ .Values.images.repository }}:{{ .Values.images.tag }}"
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        args: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-env
+        volumeMounts:
+        - name: shared-file-cache
+          mountPath: /app/public/audios
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{- end }}

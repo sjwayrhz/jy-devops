@@ -1,0 +1,30 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Project is named {{ .Values.project.name }}.
+
+{{ if .Values.project.https }}
+Project url is http://{{ .Values.project.fqdn }} or https://{{ .Values.project.fqdn }}.
+Test command:
+curl -Lv http://{{ .Values.project.fqdn }}
+curl -Lv https://{{ .Values.project.fqdn }}
+open http://{{ .Values.project.fqdn }}
+open https://{{ .Values.project.fqdn }}
+{{ else if .Values.project.httpsOnly }}
+Project url is http://{{ .Values.project.fqdn }} or https://{{ .Values.project.fqdn }}.
+Test command:
+curl -Lv https://{{ .Values.project.fqdn }}
+open https://{{ .Values.project.fqdn }}
+{{ else }}
+Project url is http://{{ .Values.project.fqdn }} or https://{{ .Values.project.fqdn }}.
+Test command:
+curl -Lv http://{{ .Values.project.fqdn }}
+open http://{{ .Values.project.fqdn }}
+{{ end }}
+
+Project database info:
+
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}

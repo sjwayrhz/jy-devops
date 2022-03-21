@@ -1,0 +1,39 @@
+#replicaCount: 0
+replicaCount: 20
+
+images:
+  repository: registry-vpc.cn-shanghai.aliyuncs.com/ac-wfl/ibmbridge
+  pullPolicy: Always
+  tag: "0.1.0"
+
+env:
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: enabled
+
+project:
+  name: "ibmbridge"
+  fqdn: ibmbridge.wfl-ischool.cn
+  #fqdn: ibmbridge-ac-prod.wfl-ischool.cn
+  team: oral
+
+service:
+  name: http
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 80
+
+podAnnotations: {}
+
+cron: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+app: {}
+
+nas:
+  server: 33ab0480de-uuw24.cn-shanghai.nas.aliyuncs.com
+  path: /ibmbridge-shared-file-cache

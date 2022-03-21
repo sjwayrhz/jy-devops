@@ -1,0 +1,35 @@
+replicaCount: 1
+
+images:
+  rails:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/praise-api-test
+    pullPolicy: Always
+    tag: "1.0"
+  reverse_proxy:
+    repository: registry.cn-shanghai.aliyuncs.com/ac-wfl/nginx-reverse-proxy-puma-assets
+    pullPolicy: Always
+    tag: "0.1.0"
+
+app:
+  sidekiq: true
+  reverse_proxy: true
+
+app_env:
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: enabled
+  MYSQL_HOST: rm-uf6l802xo45e94176.mysql.rds.aliyuncs.com
+  MYSQL_DB: praise_api_test
+  MYSQL_USER: praise_api_test_dba
+  MYSQL_PASSWORD: 9a3Xc9mz
+  MYSQL_TIMEOUT: "5000"
+  MYSQL_ENCODING: utf8mb4
+  MYSQL_COLLATION: utf8mb4_unicode_ci
+  redis_host: r-uf65ov4cm3mlcre65n.redis.rds.aliyuncs.com
+  redis_port: "6379"
+  redis_db: "0"
+  redis_namespace: praise-api-test
+
+project:
+  name: praise-api-test
+  fqdn: praise-api-test.wfl-ischool.cn
+  team: praise

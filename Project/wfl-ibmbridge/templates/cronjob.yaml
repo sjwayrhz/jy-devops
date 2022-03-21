@@ -1,0 +1,26 @@
+{{ if .Values.cron }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  schedule: {{ .Values.cron.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: {{ .Release.Name }}-cronjob-{{ .Values.cron.name }}
+            image: "{{ .Values.images.rails.repository }}:{{ .Values.images.rails.tag }}"
+            imagePullPolicy: {{ .Values.images.rails.pullPolicy }}
+            args: 
+            {{- range .Values.cron.command }}
+              - {{ . }}
+            {{- end }}
+            envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-env
+          restartPolicy: OnFailure
+{{ end }}
