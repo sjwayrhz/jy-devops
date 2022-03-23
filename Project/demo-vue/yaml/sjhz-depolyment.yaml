@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sjhz
+spec:
+  selector:
+    matchLabels:
+      name: sjhz
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: sjhz
+    spec:
+      containers:
+      - name: sjhz
+        image: sjwayrhz/demo-vue:v1.0
+        ports:
+        - containerPort: 80
