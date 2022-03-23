@@ -60,7 +60,7 @@ ingress:
   hosts:
     - "jump.sjhz.tk"
   tls:
-   - secretName: chart-example-tls
+   - secretName: sjhz-tk-tls
      hosts:
        - jump.sjhz.tk
 
