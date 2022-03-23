@@ -21,8 +21,7 @@ RUN echo "RSAAuthentication yes" >> /etc/ssh/sshd_config
 RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
 
 ## 修改session时间
-RUN sed -i 's/\#ClientAliveInterval 0/ClientAliveInterval 1200/g' /etc/ssh/sshd_config
-RUN sed -i 's/\#ClientAliveCountMax 3/ClientAliveCountMax 5/g' /etc/ssh/sshd_config
+RUN echo TMOUT=600 >> ~/.bashrc
 
 # 删除nologin
 RUN rm -f /run/nologin
