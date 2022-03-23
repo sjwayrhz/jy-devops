@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: sjhz
 spec:
-  serviceName: sjhz-service  # create serviceName 
+  serviceName: sjhz-headless-service  # create serviceName 
   selector:
     matchLabels:
       name: sjhz
