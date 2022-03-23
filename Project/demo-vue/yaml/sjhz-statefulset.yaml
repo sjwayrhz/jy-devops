@@ -1,12 +1,13 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: StatefulSet
 metadata:
   name: sjhz
 spec:
+  serviceName: sjhz-service  # create serviceName 
   selector:
     matchLabels:
       name: sjhz
-  # replicas: 1  # replicas can't be used in DaemonSet
+  replicas: 1
   template:
     metadata:
       labels:
