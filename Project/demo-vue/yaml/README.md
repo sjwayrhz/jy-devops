@@ -17,3 +17,4 @@ create a serviceName can solve this problem , just like `serviceName: sjhz-servi
 $ cat /etc/hosts | grep sjhz
 10.4.1.76       sjhz-0.sjhz-service.default.svc.cluster.local   sjhz-0
 ```
+StatufulSet非常适合类似数据库实例部署等对数据持久性、启动顺序、实例之间相互访问的场景，在创建的过程中要注意创建顺序：创建PV->创建PVC->创建Headless Service->创建StatufulSet。
