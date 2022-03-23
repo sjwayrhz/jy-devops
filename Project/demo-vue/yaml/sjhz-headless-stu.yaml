@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: sjhz-headless-service
   labels:
-    app: statefulset
+    name: sjhz
 spec:
   ports:
   - port: 80
