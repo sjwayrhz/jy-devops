@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: blog
+  namespace: default
+spec:
+  secretName: blog-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  duration: 2160h
+  renewBefore: 360h
+  keyEncoding: pkcs1
+  dnsNames:
+  - cert.sjhz.tk
