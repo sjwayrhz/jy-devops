@@ -1,0 +1,64 @@
+// 执行此groovy脚本需要对项目有如下需求：
+// 1. 确保在$WORKSPACE目录中，含有jenkins登录到image syncer主机上的私钥文件，并且key文件放在$WORKSPACE/key
+// 2. 需要手动进入jenkins服务器，使用 ssh -i $WORKSPACE/key root@8.218.27.30 登录一下image syncer主机，留下known_hosts记录
+
+pipeline {
+    agent any
+
+    parameters {
+        text(name: 'image', defaultValue: '',
+          description: 'example 1: Both have no version \n k8s.gcr.io/ingress-nginx/controller: docker.io/sjwayrhz/controller \n\n example 2: version defined only in the source image\n k8s.gcr.io/ingress-nginx/controller:v1.1.1: docker.io/sjwayrhz/controller')
+    }
+
+    environment {
+        def image_syncer_host = '8.218.27.30'
+    }
+
+    stages {
+        stage ('prerequisite') {
+            steps { 
+                script {
+                    writeFile(file: 'images.yaml', text: image)
+                }              
+                
+            }
+        }
+
+        stage ('copy images.yaml to hk project server') {
+            steps { 
+                script {
+                    sh """
+                        scp -i $WORKSPACE/key -r images.yaml root@${image_syncer_host}:/opt
+                        ssh -i $WORKSPACE/key root@${image_syncer_host} "cat /opt/images.yaml"
+                    """
+                }              
+                
+            }
+        }
+
+        stage ('excute image syncer') {
+            steps { 
+                script {
+                    sh """
+                        ssh -i $WORKSPACE/key root@${image_syncer_host} "/opt/image-syncer --proc=6 --retries=3 --auth=/opt/auth.yaml --images=/opt/images.yaml"
+                    """
+                }              
+                
+            }
+        }
+
+        stage ('show images') {
+            steps { 
+                script {
+                    sh """
+                        echo "images syncer"
+                        cat images.yaml
+                    """
+                }              
+                
+            }
+        }
+
+    }
+}
+
