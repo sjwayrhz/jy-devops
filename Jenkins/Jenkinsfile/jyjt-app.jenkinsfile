@@ -1,11 +1,15 @@
 #!groovy
-@Library('Jenkinslib') _     
-def mytools = new org.devops.tools()
+def createVersion() {
+  return new Date().format('yyyyMMddHHmm')
+}
+
 
 def road = [
   "api": "juneyaoYun",
   "web": "juneyaoYun",
-  "vue": "group-app-manage"
+  "vue": "group-app-manage",
+  "redbag": "redBag",
+  "meet": "meet"
 ]
 
 def projectName
@@ -15,7 +19,7 @@ pipeline {
 
     parameters {
         choice(name: 'branch', choices: ['develop', 'master'], description: 'select the branch')
-        choice(name: 'app', choices: ['api', 'web', 'vue'], description: 'select the app')
+        choice(name: 'app', choices: ['api', 'web', 'vue','redbag','meet'], description: 'select the app')
     }
 
     environment {
@@ -47,8 +51,8 @@ pipeline {
                 sh """
                     if [[ ${params.app} == "api" || ${params.app} == "web" ]] ;then
                         cd $WORKSPACE/juneyaoYun
-                        /usr/local/apache-maven-3.8.1/bin/mvn clean install
-                    elif [ ${params.app} == "vue" ];then
+                        /usr/local/apache-maven-3.8.4/bin/mvn clean install
+                    elif [[ ${params.app} == "vue" || ${params.app} == "redbag" || ${params.app} == "meet" ]] ;then
                         echo "vue don't need compile"
                     fi                  
                 """
@@ -63,6 +67,10 @@ pipeline {
                             cd $WORKSPACE/juneyaoYun/juneyaoYun-${params.app}
                         elif [ ${params.app} == "vue" ];then
                             cd $WORKSPACE/group-app-manage
+                        elif [ ${params.app} == "redbag" ];then
+                            cd $WORKSPACE/redBag
+                        elif [ ${params.app} == "meet" ];then
+                            cd $WORKSPACE/meet
                         fi     
                         
                         docker build -t ${repositry}:${tag} .
@@ -76,7 +84,7 @@ pipeline {
             steps{
                 sh """
                  if [ "${params.branch}" == "develop" ];then {
-                    ssh root@192.168.177.45 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-dev"
+                    ssh root@192.168.177.90 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-dev"
                     }
                  elif [ "${params.branch}" == "master" ];then {
                     ssh root@103.192.254.15 -p 30022 "kubectl set image deployment/${params.app} ${params.app}=${repositry}:${tag} -n app-prod"
@@ -87,3 +95,4 @@ pipeline {
         }
     }
 }
+
