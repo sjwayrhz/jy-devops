@@ -1,1 +1,1 @@
-docker run -d -p 80:80 sjwayrhz/demo-vue:v1.0
+docker run -d -p 80:80 sjwayrhz/demo-vue:v1.1
