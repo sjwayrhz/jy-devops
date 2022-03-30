@@ -61,10 +61,10 @@ ingress:
               name: manage
               port:
                 number: 8083
-  tls: 
-    - secretName: manage-juneyaokc-com-secret
-      hosts:
-        - manage.juneyaokc.com
+  tls: [] 
+    # - secretName: manage-juneyaokc-secret
+    #  hosts:
+    #   - manage.juneyaokc.com
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "vue-http.fullname" . }}
+  name: {{ include "api.fullname" . }}
   labels:
-    {{- include "vue-http.labels" . | nindent 4 }}
+    {{- include "api.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -11,5 +11,6 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      nodePort: {{ .Values.service.nodePort }}
   selector:
-    {{- include "vue-http.selectorLabels" . | nindent 4 }}
+    {{- include "api.selectorLabels" . | nindent 4 }}
