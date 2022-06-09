@@ -71,7 +71,7 @@ spec:
         - name: registry-pull-secret
       containers:
         - name: redbag
-          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-redbag:0.0.1
+          image: registry.cn-shanghai.aliyuncs.com/jyjt/master-redbag:v1.0
           readinessProbe:
             httpGet:
               path: /#/login
